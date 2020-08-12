@@ -9,21 +9,49 @@
 /* Begin PBXBuildFile section */
 		842F37C124E2E587008C4A44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37C024E2E587008C4A44 /* AppDelegate.swift */; };
 		842F37C324E2E587008C4A44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37C224E2E587008C4A44 /* SceneDelegate.swift */; };
-		842F37C524E2E587008C4A44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37C424E2E587008C4A44 /* ViewController.swift */; };
-		842F37C824E2E587008C4A44 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842F37C624E2E587008C4A44 /* Main.storyboard */; };
 		842F37CA24E2E58A008C4A44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842F37C924E2E58A008C4A44 /* Assets.xcassets */; };
 		842F37CD24E2E58A008C4A44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842F37CB24E2E58A008C4A44 /* LaunchScreen.storyboard */; };
+		842F37D824E2E626008C4A44 /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37D724E2E626008C4A44 /* ContactsVC.swift */; };
+		842F37DA24E2E661008C4A44 /* AddNewContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37D924E2E661008C4A44 /* AddNewContactVC.swift */; };
+		842F37DC24E2E6BE008C4A44 /* ContactInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37DB24E2E6BE008C4A44 /* ContactInfoVC.swift */; };
+		842F37E124E2F12A008C4A44 /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37E024E2F12A008C4A44 /* MainNavigationController.swift */; };
+		842F37E324E31C0B008C4A44 /* SFSymbols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37E224E31C0B008C4A44 /* SFSymbols.swift */; };
+		842F37E624E31E2B008C4A44 /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37E524E31E2B008C4A44 /* UIViewController + Ext.swift */; };
+		842F37E924E32426008C4A44 /* ABTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37E824E32426008C4A44 /* ABTitleLabel.swift */; };
+		842F37EB24E32538008C4A44 /* ABBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37EA24E32537008C4A44 /* ABBodyLabel.swift */; };
+		842F37EE24E3261C008C4A44 /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37ED24E3261C008C4A44 /* ContactsCell.swift */; };
+		842F37F224E32770008C4A44 /* ABImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37F124E32770008C4A44 /* ABImageView.swift */; };
+		842F37F424E3C628008C4A44 /* ABEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37F324E3C628008C4A44 /* ABEmptyStateView.swift */; };
+		842F37F724E40D22008C4A44 /* ContactsAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37F624E40D22008C4A44 /* ContactsAddCell.swift */; };
+		842F37F924E40D45008C4A44 /* ContacstEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37F824E40D45008C4A44 /* ContacstEditCell.swift */; };
+		842F37FC24E40EDA008C4A44 /* ABTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37FB24E40EDA008C4A44 /* ABTextField.swift */; };
+		8434750024E46C8E0052692F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 843474FF24E46C8E0052692F /* GoogleService-Info.plist */; };
+		8434750324E46D270052692F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434750224E46D270052692F /* UserData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		842F37BD24E2E587008C4A44 /* addressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = addressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842F37C024E2E587008C4A44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		842F37C224E2E587008C4A44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		842F37C424E2E587008C4A44 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		842F37C724E2E587008C4A44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		842F37C924E2E58A008C4A44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842F37CC24E2E58A008C4A44 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		842F37CE24E2E58A008C4A44 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		842F37D724E2E626008C4A44 /* ContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
+		842F37D924E2E661008C4A44 /* AddNewContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewContactVC.swift; sourceTree = "<group>"; };
+		842F37DB24E2E6BE008C4A44 /* ContactInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoVC.swift; sourceTree = "<group>"; };
+		842F37E024E2F12A008C4A44 /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		842F37E224E31C0B008C4A44 /* SFSymbols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SFSymbols.swift; sourceTree = "<group>"; };
+		842F37E524E31E2B008C4A44 /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
+		842F37E824E32426008C4A44 /* ABTitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTitleLabel.swift; sourceTree = "<group>"; };
+		842F37EA24E32537008C4A44 /* ABBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABBodyLabel.swift; sourceTree = "<group>"; };
+		842F37ED24E3261C008C4A44 /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
+		842F37F124E32770008C4A44 /* ABImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABImageView.swift; sourceTree = "<group>"; };
+		842F37F324E3C628008C4A44 /* ABEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABEmptyStateView.swift; sourceTree = "<group>"; };
+		842F37F624E40D22008C4A44 /* ContactsAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAddCell.swift; sourceTree = "<group>"; };
+		842F37F824E40D45008C4A44 /* ContacstEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContacstEditCell.swift; sourceTree = "<group>"; };
+		842F37FB24E40EDA008C4A44 /* ABTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTextField.swift; sourceTree = "<group>"; };
+		843474FF24E46C8E0052692F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8434750224E46D270052692F /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +84,109 @@
 		842F37BF24E2E587008C4A44 /* addressBook */ = {
 			isa = PBXGroup;
 			children = (
+				8434750124E46D090052692F /* Model */,
+				842F37F524E3FD82008C4A44 /* DataSource */,
+				842F37EF24E32741008C4A44 /* CustomViews */,
+				842F37EC24E325EC008C4A44 /* Cells */,
+				842F37E724E323FE008C4A44 /* Labels */,
+				842F37E424E31DFA008C4A44 /* Extentions */,
+				842F37DD24E2F109008C4A44 /* Utils */,
+				842F37D424E2E5D4008C4A44 /* Screens */,
 				842F37C024E2E587008C4A44 /* AppDelegate.swift */,
 				842F37C224E2E587008C4A44 /* SceneDelegate.swift */,
-				842F37C424E2E587008C4A44 /* ViewController.swift */,
-				842F37C624E2E587008C4A44 /* Main.storyboard */,
 				842F37C924E2E58A008C4A44 /* Assets.xcassets */,
 				842F37CB24E2E58A008C4A44 /* LaunchScreen.storyboard */,
 				842F37CE24E2E58A008C4A44 /* Info.plist */,
+				843474FF24E46C8E0052692F /* GoogleService-Info.plist */,
+				842F37FA24E40E90008C4A44 /* TextFields */,
 			);
 			path = addressBook;
+			sourceTree = "<group>";
+		};
+		842F37D424E2E5D4008C4A44 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				842F37D724E2E626008C4A44 /* ContactsVC.swift */,
+				842F37D924E2E661008C4A44 /* AddNewContactVC.swift */,
+				842F37DB24E2E6BE008C4A44 /* ContactInfoVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		842F37DD24E2F109008C4A44 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				842F37E024E2F12A008C4A44 /* MainNavigationController.swift */,
+				842F37E224E31C0B008C4A44 /* SFSymbols.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		842F37E424E31DFA008C4A44 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				842F37E524E31E2B008C4A44 /* UIViewController + Ext.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
+		842F37E724E323FE008C4A44 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				842F37E824E32426008C4A44 /* ABTitleLabel.swift */,
+				842F37EA24E32537008C4A44 /* ABBodyLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		842F37EC24E325EC008C4A44 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				842F37ED24E3261C008C4A44 /* ContactsCell.swift */,
+				842F37F624E40D22008C4A44 /* ContactsAddCell.swift */,
+				842F37F824E40D45008C4A44 /* ContacstEditCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		842F37EF24E32741008C4A44 /* CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				842F37F024E3275F008C4A44 /* ImageViews */,
+				842F37F324E3C628008C4A44 /* ABEmptyStateView.swift */,
+			);
+			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		842F37F024E3275F008C4A44 /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				842F37F124E32770008C4A44 /* ABImageView.swift */,
+			);
+			path = ImageViews;
+			sourceTree = "<group>";
+		};
+		842F37F524E3FD82008C4A44 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		842F37FA24E40E90008C4A44 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				842F37FB24E40EDA008C4A44 /* ABTextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		8434750124E46D090052692F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8434750224E46D270052692F /* UserData.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +249,7 @@
 			files = (
 				842F37CD24E2E58A008C4A44 /* LaunchScreen.storyboard in Resources */,
 				842F37CA24E2E58A008C4A44 /* Assets.xcassets in Resources */,
-				842F37C824E2E587008C4A44 /* Main.storyboard in Resources */,
+				8434750024E46C8E0052692F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +260,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842F37C524E2E587008C4A44 /* ViewController.swift in Sources */,
+				842F37FC24E40EDA008C4A44 /* ABTextField.swift in Sources */,
+				842F37E924E32426008C4A44 /* ABTitleLabel.swift in Sources */,
+				842F37F224E32770008C4A44 /* ABImageView.swift in Sources */,
+				842F37EB24E32538008C4A44 /* ABBodyLabel.swift in Sources */,
+				842F37DA24E2E661008C4A44 /* AddNewContactVC.swift in Sources */,
 				842F37C124E2E587008C4A44 /* AppDelegate.swift in Sources */,
+				842F37F924E40D45008C4A44 /* ContacstEditCell.swift in Sources */,
 				842F37C324E2E587008C4A44 /* SceneDelegate.swift in Sources */,
+				842F37E324E31C0B008C4A44 /* SFSymbols.swift in Sources */,
+				842F37E124E2F12A008C4A44 /* MainNavigationController.swift in Sources */,
+				842F37EE24E3261C008C4A44 /* ContactsCell.swift in Sources */,
+				842F37D824E2E626008C4A44 /* ContactsVC.swift in Sources */,
+				842F37F724E40D22008C4A44 /* ContactsAddCell.swift in Sources */,
+				8434750324E46D270052692F /* UserData.swift in Sources */,
+				842F37F424E3C628008C4A44 /* ABEmptyStateView.swift in Sources */,
+				842F37E624E31E2B008C4A44 /* UIViewController + Ext.swift in Sources */,
+				842F37DC24E2E6BE008C4A44 /* ContactInfoVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		842F37C624E2E587008C4A44 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				842F37C724E2E587008C4A44 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		842F37CB24E2E58A008C4A44 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
