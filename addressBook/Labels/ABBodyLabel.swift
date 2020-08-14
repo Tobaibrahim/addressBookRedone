@@ -25,14 +25,15 @@ override init(frame: CGRect) {
     
     init(textAlignment:NSTextAlignment,fontsSize:CGFloat) {
     super.init(frame: .zero)
+    configure()
+
     self.textAlignment = textAlignment
     self.font = UIFont.systemFont(ofSize: fontsSize, weight: .light)
-    configure()
     }
     
     
     private func configure () {
-        textColor                 = .systemGray
+        textColor                 = .gray
         adjustsFontSizeToFitWidth = true
         font                      = UIFont.preferredFont(forTextStyle: .body)
         minimumScaleFactor        = 0.75

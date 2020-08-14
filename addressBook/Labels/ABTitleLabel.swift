@@ -30,7 +30,7 @@ class ABTitleLabel: UILabel {
     
     
     private func configure () {
-        textColor                 = .systemGray
+        textColor                 = .label
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor        = 0.90
         lineBreakMode             = .byTruncatingTail

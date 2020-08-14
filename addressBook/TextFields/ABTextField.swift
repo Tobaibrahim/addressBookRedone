@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ABTextField: UITextField {
+class ABTextField: UITextView {
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(frame: CGRect, textContainer: NSTextContainer?) {
+        super.init(frame: CGRect.zero, textContainer: nil)
         configure()
     }
     
@@ -28,15 +28,18 @@ class ABTextField: UITextField {
 //        layer.borderWidth           = 2
 //        layer.borderColor           = UIColor.systemGray4.cgColor
         
-        textColor                   = .label
+        textColor                   = .secondaryLabel
 //        tintColor                   = .label
         textAlignment               = .left
         font                        = UIFont.preferredFont(forTextStyle: .body)
-        adjustsFontSizeToFitWidth   = true
-        minimumFontSize             = 12
-        returnKeyType               = .go
+//        adjustsFontSizeToFitWidth   = true
+//        minimumFontSize             = 12
+        returnKeyType               = .done
         backgroundColor             = .systemGray5
         autocorrectionType          = .no
+        
+//        placeholder                 = "Type"
+        
        
     }
 }

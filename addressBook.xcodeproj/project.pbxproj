@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0F7356D3BB51AD08BFE328 /* Pods_addressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 386634C3AD4E739CF7695AF7 /* Pods_addressBook.framework */; };
 		842F37C124E2E587008C4A44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37C024E2E587008C4A44 /* AppDelegate.swift */; };
 		842F37C324E2E587008C4A44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37C224E2E587008C4A44 /* SceneDelegate.swift */; };
 		842F37CA24E2E58A008C4A44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842F37C924E2E58A008C4A44 /* Assets.xcassets */; };
@@ -27,9 +28,13 @@
 		842F37FC24E40EDA008C4A44 /* ABTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37FB24E40EDA008C4A44 /* ABTextField.swift */; };
 		8434750024E46C8E0052692F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 843474FF24E46C8E0052692F /* GoogleService-Info.plist */; };
 		8434750324E46D270052692F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434750224E46D270052692F /* UserData.swift */; };
+		8434750524E5477A0052692F /* ABInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434750424E5477A0052692F /* ABInputView.swift */; };
+		846BD89A24E68B1D00A43A13 /* ABDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BD89924E68B1D00A43A13 /* ABDisplayView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		212077B7E2E382C54683BD53 /* Pods-addressBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-addressBook.debug.xcconfig"; path = "Target Support Files/Pods-addressBook/Pods-addressBook.debug.xcconfig"; sourceTree = "<group>"; };
+		386634C3AD4E739CF7695AF7 /* Pods_addressBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_addressBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		842F37BD24E2E587008C4A44 /* addressBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = addressBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		842F37C024E2E587008C4A44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		842F37C224E2E587008C4A44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +57,9 @@
 		842F37FB24E40EDA008C4A44 /* ABTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTextField.swift; sourceTree = "<group>"; };
 		843474FF24E46C8E0052692F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8434750224E46D270052692F /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		8434750424E5477A0052692F /* ABInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABInputView.swift; sourceTree = "<group>"; };
+		846BD89924E68B1D00A43A13 /* ABDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABDisplayView.swift; sourceTree = "<group>"; };
+		D4268B07F4A580788115E431 /* Pods-addressBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-addressBook.release.xcconfig"; path = "Target Support Files/Pods-addressBook/Pods-addressBook.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,17 +67,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C0F7356D3BB51AD08BFE328 /* Pods_addressBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A2662B77504ECFF73749362 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				386634C3AD4E739CF7695AF7 /* Pods_addressBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		842F37B424E2E587008C4A44 = {
 			isa = PBXGroup;
 			children = (
 				842F37BF24E2E587008C4A44 /* addressBook */,
 				842F37BE24E2E587008C4A44 /* Products */,
+				CF974AF89B39BDDFA4E57271 /* Pods */,
+				3A2662B77504ECFF73749362 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -154,6 +173,8 @@
 			children = (
 				842F37F024E3275F008C4A44 /* ImageViews */,
 				842F37F324E3C628008C4A44 /* ABEmptyStateView.swift */,
+				8434750424E5477A0052692F /* ABInputView.swift */,
+				846BD89924E68B1D00A43A13 /* ABDisplayView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -189,6 +210,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		CF974AF89B39BDDFA4E57271 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				212077B7E2E382C54683BD53 /* Pods-addressBook.debug.xcconfig */,
+				D4268B07F4A580788115E431 /* Pods-addressBook.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,9 +227,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 842F37D124E2E58A008C4A44 /* Build configuration list for PBXNativeTarget "addressBook" */;
 			buildPhases = (
+				92A27C0000E6EF1C3EEAD523 /* [CP] Check Pods Manifest.lock */,
 				842F37B924E2E587008C4A44 /* Sources */,
 				842F37BA24E2E587008C4A44 /* Frameworks */,
 				842F37BB24E2E587008C4A44 /* Resources */,
+				A7972068DCA269B987F47E84 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -255,6 +288,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		92A27C0000E6EF1C3EEAD523 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-addressBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7972068DCA269B987F47E84 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-addressBook/Pods-addressBook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-addressBook/Pods-addressBook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-addressBook/Pods-addressBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		842F37B924E2E587008C4A44 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -266,6 +341,7 @@
 				842F37EB24E32538008C4A44 /* ABBodyLabel.swift in Sources */,
 				842F37DA24E2E661008C4A44 /* AddNewContactVC.swift in Sources */,
 				842F37C124E2E587008C4A44 /* AppDelegate.swift in Sources */,
+				8434750524E5477A0052692F /* ABInputView.swift in Sources */,
 				842F37F924E40D45008C4A44 /* ContacstEditCell.swift in Sources */,
 				842F37C324E2E587008C4A44 /* SceneDelegate.swift in Sources */,
 				842F37E324E31C0B008C4A44 /* SFSymbols.swift in Sources */,
@@ -275,6 +351,7 @@
 				842F37F724E40D22008C4A44 /* ContactsAddCell.swift in Sources */,
 				8434750324E46D270052692F /* UserData.swift in Sources */,
 				842F37F424E3C628008C4A44 /* ABEmptyStateView.swift in Sources */,
+				846BD89A24E68B1D00A43A13 /* ABDisplayView.swift in Sources */,
 				842F37E624E31E2B008C4A44 /* UIViewController + Ext.swift in Sources */,
 				842F37DC24E2E6BE008C4A44 /* ContactInfoVC.swift in Sources */,
 			);
@@ -410,6 +487,7 @@
 		};
 		842F37D224E2E58A008C4A44 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 212077B7E2E382C54683BD53 /* Pods-addressBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -428,6 +506,7 @@
 		};
 		842F37D324E2E58A008C4A44 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4268B07F4A580788115E431 /* Pods-addressBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
