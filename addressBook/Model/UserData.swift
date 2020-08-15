@@ -11,13 +11,40 @@ import UIKit
 
 
 struct UserData {
-    
-    static var firstName   = String()
-    static var lastName    = String()
-    static var email       = String()
-    static var nickName    = String()
-    static var PhoneNumber = String()
-    static var Address     = String()
 
+    let firstName:String
+    let lastName: String
+    let email: String
+    let nickName:String
+    let PhoneNumber:String
+    let Address:String
+    let imageURL:String
+    let keys:[String]
+
+    init(keys:[String],dictionary:[String:AnyObject]) {
+
+        self.firstName = dictionary["FirstName"] as? String ?? ""
+        self.lastName  = dictionary["LastName"] as? String ?? ""
+        self.email     = dictionary["Email"] as? String ?? ""
+        self.nickName  = dictionary["NickName"] as? String ?? ""
+        self.PhoneNumber = dictionary["Phone"] as? String ?? ""
+        self.Address   = dictionary["Address"] as? String ?? ""
+        self.imageURL  = dictionary["ContactImageURL"] as? String ?? ""
+        self.keys      = keys
+    }
     
+
 }
+
+
+//struct UserData {
+//
+//    let firstName:[String]
+//    let lastName: [String]
+//    let email: [String]
+//    let nickName:[String]
+//    let PhoneNumber:[String]
+//    let Address:[String]
+//    let imageURL:[String]
+//
+//}

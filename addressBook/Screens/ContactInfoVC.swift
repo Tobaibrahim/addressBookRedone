@@ -7,12 +7,24 @@
 //
 
 import UIKit
+import Firebase
 
 class ContactInfoVC: UIViewController {
     
     
     //MARK: Properties
     
+    
+    var passedOverContactName: String!
+    
+    
+    var Contact: UserData? {
+           didSet {
+               print("DEBUG: Did set user in contactInfo")
+            configureUI()
+
+           }
+       }
         
     private lazy var firstNameLabelField:ABBodyLabel = {
         let firstName = ABBodyLabel()
@@ -79,15 +91,23 @@ class ContactInfoVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchUsers(user:passedOverContactName)
     }
     
     
     //MARK: Helpers
     
+    func fetchUsers(user:String) {
+        UserService.shared.fetchUser(user: user) { (userData) in
+            self.Contact = userData
+        }
+    }
     
     func configureUI() {
-        
+       
         view.backgroundColor   = .systemGray5
         
         let firstNameDisplayView    = ABDisplayView(displayView: firstNameLabelField, title: "First Name")
@@ -97,6 +117,15 @@ class ContactInfoVC: UIViewController {
         let PhoneNumberDisplayView  = ABDisplayView(displayView: PhoneNumberLabelField, title: "Phone")
         let AddressDisplayView      = ABDisplayView(displayView: AddressLabelField, title: "Address")
         AddressDisplayView.underLine.isHidden = true
+        
+        titleLabel.text            = ((Contact?.firstName ?? "") + (Contact?.lastName ?? ""))
+        nickNameLabel.text         = Contact?.nickName
+        firstNameLabelField.text   = Contact?.firstName
+        lastNameLabelField.text    = Contact?.lastName
+        emailLabelField.text       = Contact?.email
+        nickNameLabelField.text    = Contact?.nickName
+        PhoneNumberLabelField.text = Contact?.PhoneNumber
+        AddressLabelField.text     = Contact?.Address
         
         
         let views = [contactImage,titleLabel,
@@ -124,12 +153,6 @@ class ContactInfoVC: UIViewController {
         separatorLine.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 25)
         nickNameLabel.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 1)
         
-        firstNameLabelField.text = "Toba"
-        lastNameLabelField.text = "Ibrahim"
-        emailLabelField.text    = "Toba.I@hotmail.com"
-        nickNameLabelField.text  = "Tobaaaaa"
-        PhoneNumberLabelField.text = "07743023250"
-        AddressLabelField.text     = "4 acle gardens, bulwell, Nottingham,NG6 8NY"
         
         
         firstNameDisplayView.centerX(inView: view, topAnchor: separatorLine.bottomAnchor, paddingTop: 30)
@@ -144,7 +167,7 @@ class ContactInfoVC: UIViewController {
         nickNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: 10,height: 40)
         AddressDisplayView.centerX(inView: view, topAnchor: nickNameDisplayView.bottomAnchor, paddingTop: 30)
         AddressDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: 10,height: 40)
-
+        
         
     }
     
@@ -159,10 +182,19 @@ class ContactInfoVC: UIViewController {
     
     @objc func editButtonPressed() {
         print("DEBUG: Textfileds saved")
+        let destVC        = AddNewContactVC()
+        let navController = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
+        modalPresentationStyle = .overCurrentContext
         
-//        print("DEBUG:TEXTFIELD NAME = \(String(describing: firstNameTextField.text))")
         
-        
+    }
+    
+    
+    
+    
+    deinit {
+        print("DEBUG: ContactsInfo WAS DEINIT")
     }
     
 }

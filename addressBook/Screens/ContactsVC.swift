@@ -7,16 +7,35 @@
 //
 
 import UIKit
+import Firebase
+
 
 class ContactsVC: UIViewController {
     
-    //MARK: Properties
+    //MARK: - Properties
+    var numberOfRows: Int!
+    
+    var contactNameString: String!
+    
+    
+    var Contact: UserData? {
+        didSet {
+            print("DEBUG: Did set user in contacts")
+        }
+    }
+    
+    var contactKey: Contactskeys? {
+        didSet {
+            print("DEBUG: Did set key in contacts")
+            tableView.reloadData()
+        }
+    }
+    
+    
     var searchContacts = [String]()
     var issearching    = false
     var isArrayEmpty   = false
-    
-    let names = ["Toba","Tas","Ashley","Marcus","Tom","Peter"]
-    
+        
     
     let searchBar:UISearchBar = {
         let searchBar =  UISearchBar(frame: .zero)
@@ -33,11 +52,12 @@ class ContactsVC: UIViewController {
         tv.rowHeight           = 85
         tv.register(ContactsCell.self, forCellReuseIdentifier: ContactsCell.reuseID)
         tv.sectionIndexColor   = .systemGray6
+        
         return tv
     }()
     
     
-    //MARK: Life Cycle
+    //MARK: - Life Cycle
     
     
     override func viewDidLoad() {
@@ -45,10 +65,27 @@ class ContactsVC: UIViewController {
         configureUI()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
     
-    //MARK: Helpers
+    
+    //MARK: - Helpers
+    func fetchUsers(user:String) {
+        UserService.shared.fetchUser(user: user) { (userData) in
+            self.Contact = userData
+        }
+    }
+    
+    func fetchKeys() {
+        UserService.shared.fetchKey { (key) in
+            self.contactKey = key
+        }
+    }
     
     func configureUI() {
+        fetchKeys()
         
         view.backgroundColor   = .systemGray5
         let addButton          = UIBarButtonItem(image: SFSymbols.addButton, style: .done, target: self, action:#selector(addButtonPressed))
@@ -68,13 +105,9 @@ class ContactsVC: UIViewController {
             tableView.frame      = view.frame
             tableView.delegate   = self
             tableView.dataSource = self
-            
-            
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationItem.titleView = searchBar
-            
         }
-        
         
     }
     @objc func addButtonPressed() {
@@ -85,12 +118,10 @@ class ContactsVC: UIViewController {
         
     }
     
-    @objc func searchButtonPressed() {
-        
-        
+    
+    deinit {
+        print("DEBUG: Contacts WAS DEINIT")
     }
-    
-    
     
 }
 
@@ -101,7 +132,6 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         let cell =  tableView.dequeueReusableCell(withIdentifier: ContactsCell.reuseID) as! ContactsCell
         
         cell.editImageView.image = SFSymbols.icon
-        cell.nickNameLabel.text = "NickName"
         
         if issearching {
             cell.titleLabel.text = searchContacts[indexPath.row]
@@ -109,33 +139,51 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         }
             
         else {
-            
-            cell.titleLabel.text = names[indexPath.row]
-            
+            cell.nickNameLabel.text  = Contact?.nickName
+            cell.titleLabel.text     = contactKey?.keys[indexPath.row]
+            // add this in cell
         }
+        
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let safeContactKey = contactKey?.keys else {return 0}
         
         if issearching {
             return searchContacts.count
         }
         else {
-            return names.count
+            
+            return safeContactKey.count
         }
         
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
-            let destVC        = ContactInfoVC()
-            let navController = UINavigationController(rootViewController: destVC)
-            present(navController, animated: true)
+        
+        let destVC = ContactInfoVC()
+
+        if issearching {
+            let path = searchContacts[indexPath.row]
+            fetchUsers(user: path)
+            destVC.passedOverContactName = path
         }
+            
+        else {
+            let path  = contactKey?.keys[indexPath.row]
+            fetchUsers(user: path!)
+            destVC.passedOverContactName = path
+            
+        }
+        let navController = UINavigationController(rootViewController: destVC)
+        present(navController, animated: true)
+        
+        
     }
+    
     
     
 }
@@ -145,7 +193,8 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
 extension ContactsVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         issearching = true
-        searchContacts = names.filter({$0.prefix(searchText.count) == searchText})
+        guard let safeContactKey = contactKey?.keys else {return}
+        searchContacts = safeContactKey.filter({$0.prefix(searchText.count) == searchText})
         tableView.reloadData()
         
     }
