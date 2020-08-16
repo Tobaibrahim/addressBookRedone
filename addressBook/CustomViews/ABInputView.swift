@@ -42,7 +42,7 @@ class ABInputView: UIView {
         
         titleLabel.anchor(leading: self.leadingAnchor, paddingLeft: 10,height: 20)
         editImageView.anchor(top:self.topAnchor ,trailing: self.trailingAnchor, paddingRight: 20, width: 22, height: 22)
-        underLine.centerX(inView: self, topAnchor: textView.bottomAnchor, paddingTop: 2)
+        underLine.centerX(inView: self, topAnchor: textView.bottomAnchor, paddingTop: 5)
         textView.anchor(top: titleLabel.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, paddingTop: 6, paddingLeft: 10, height: 40)
         underLine.setDimensions(width: 360, height: 1)
 

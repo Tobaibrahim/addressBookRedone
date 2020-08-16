@@ -12,23 +12,30 @@ import UIKit
 extension UIViewController {
     
     
+    
+    
+    func presentABAlertOnMainThread(title:String,message:String,buttonTitle:String) {
+        DispatchQueue.main.async {
+            let alertVC = ABAlertVC(alertTitle: title, message: message, buttonTitle: buttonTitle)
+            alertVC.modalPresentationStyle = .overFullScreen
+            alertVC.modalTransitionStyle   = .crossDissolve
+            self.present(alertVC,animated: true)
+        }
+    }
+    
+    
+    
     func showEmptyStateView (with message:String, in view:UIView) {
         let emptyStateView = ABEmptyStateView(message: message)
-        
         emptyStateView.frame = view.bounds
-        
         view.addSubview(emptyStateView)
-        
-        
     }
     
     
 }
 
 extension UIView {
-    
-    
-    
+
     
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 leading: NSLayoutXAxisAnchor? = nil,

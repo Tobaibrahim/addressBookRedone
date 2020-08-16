@@ -23,8 +23,6 @@
 		842F37EE24E3261C008C4A44 /* ContactsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37ED24E3261C008C4A44 /* ContactsCell.swift */; };
 		842F37F224E32770008C4A44 /* ABImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37F124E32770008C4A44 /* ABImageView.swift */; };
 		842F37F424E3C628008C4A44 /* ABEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37F324E3C628008C4A44 /* ABEmptyStateView.swift */; };
-		842F37F724E40D22008C4A44 /* ContactsAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37F624E40D22008C4A44 /* ContactsAddCell.swift */; };
-		842F37F924E40D45008C4A44 /* ContacstEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37F824E40D45008C4A44 /* ContacstEditCell.swift */; };
 		842F37FC24E40EDA008C4A44 /* ABTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842F37FB24E40EDA008C4A44 /* ABTextField.swift */; };
 		8434750024E46C8E0052692F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 843474FF24E46C8E0052692F /* GoogleService-Info.plist */; };
 		8434750324E46D270052692F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434750224E46D270052692F /* UserData.swift */; };
@@ -33,6 +31,9 @@
 		84F29A4024E6B00C00143393 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A3F24E6B00C00143393 /* AuthService.swift */; };
 		84F29A4224E7F8FE00143393 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4124E7F8FE00143393 /* UserService.swift */; };
 		84F29A4424E82C5900143393 /* Contactskeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4324E82C5900143393 /* Contactskeys.swift */; };
+		84F29A4624E9578400143393 /* UserImageUrlData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4524E9578400143393 /* UserImageUrlData.swift */; };
+		84F29A4824E9830600143393 /* ABAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4724E9830600143393 /* ABAlertVC.swift */; };
+		84F29A4B24E984FB00143393 /* ABButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4A24E984FB00143393 /* ABButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,8 +56,6 @@
 		842F37ED24E3261C008C4A44 /* ContactsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsCell.swift; sourceTree = "<group>"; };
 		842F37F124E32770008C4A44 /* ABImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABImageView.swift; sourceTree = "<group>"; };
 		842F37F324E3C628008C4A44 /* ABEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABEmptyStateView.swift; sourceTree = "<group>"; };
-		842F37F624E40D22008C4A44 /* ContactsAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAddCell.swift; sourceTree = "<group>"; };
-		842F37F824E40D45008C4A44 /* ContacstEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContacstEditCell.swift; sourceTree = "<group>"; };
 		842F37FB24E40EDA008C4A44 /* ABTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABTextField.swift; sourceTree = "<group>"; };
 		843474FF24E46C8E0052692F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8434750224E46D270052692F /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
@@ -65,6 +64,9 @@
 		84F29A3F24E6B00C00143393 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		84F29A4124E7F8FE00143393 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		84F29A4324E82C5900143393 /* Contactskeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contactskeys.swift; sourceTree = "<group>"; };
+		84F29A4524E9578400143393 /* UserImageUrlData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageUrlData.swift; sourceTree = "<group>"; };
+		84F29A4724E9830600143393 /* ABAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABAlertVC.swift; sourceTree = "<group>"; };
+		84F29A4A24E984FB00143393 /* ABButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABButton.swift; sourceTree = "<group>"; };
 		D4268B07F4A580788115E431 /* Pods-addressBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-addressBook.release.xcconfig"; path = "Target Support Files/Pods-addressBook/Pods-addressBook.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,9 +111,9 @@
 		842F37BF24E2E587008C4A44 /* addressBook */ = {
 			isa = PBXGroup;
 			children = (
+				84F29A4924E984E700143393 /* Buttons */,
 				84F29A3B24E6AF4E00143393 /* API */,
 				8434750124E46D090052692F /* Model */,
-				842F37F524E3FD82008C4A44 /* DataSource */,
 				842F37EF24E32741008C4A44 /* CustomViews */,
 				842F37EC24E325EC008C4A44 /* Cells */,
 				842F37E724E323FE008C4A44 /* Labels */,
@@ -124,7 +126,6 @@
 				842F37CB24E2E58A008C4A44 /* LaunchScreen.storyboard */,
 				842F37CE24E2E58A008C4A44 /* Info.plist */,
 				843474FF24E46C8E0052692F /* GoogleService-Info.plist */,
-				842F37FA24E40E90008C4A44 /* TextFields */,
 			);
 			path = addressBook;
 			sourceTree = "<group>";
@@ -132,6 +133,7 @@
 		842F37D424E2E5D4008C4A44 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				842F37FA24E40E90008C4A44 /* TextFields */,
 				842F37D724E2E626008C4A44 /* ContactsVC.swift */,
 				842F37D924E2E661008C4A44 /* AddNewContactVC.swift */,
 				842F37DB24E2E6BE008C4A44 /* ContactInfoVC.swift */,
@@ -169,8 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				842F37ED24E3261C008C4A44 /* ContactsCell.swift */,
-				842F37F624E40D22008C4A44 /* ContactsAddCell.swift */,
-				842F37F824E40D45008C4A44 /* ContacstEditCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -182,6 +182,7 @@
 				842F37F324E3C628008C4A44 /* ABEmptyStateView.swift */,
 				8434750424E5477A0052692F /* ABInputView.swift */,
 				846BD89924E68B1D00A43A13 /* ABDisplayView.swift */,
+				84F29A4724E9830600143393 /* ABAlertVC.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -192,13 +193,6 @@
 				842F37F124E32770008C4A44 /* ABImageView.swift */,
 			);
 			path = ImageViews;
-			sourceTree = "<group>";
-		};
-		842F37F524E3FD82008C4A44 /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataSource;
 			sourceTree = "<group>";
 		};
 		842F37FA24E40E90008C4A44 /* TextFields */ = {
@@ -223,8 +217,17 @@
 			children = (
 				84F29A3F24E6B00C00143393 /* AuthService.swift */,
 				84F29A4124E7F8FE00143393 /* UserService.swift */,
+				84F29A4524E9578400143393 /* UserImageUrlData.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		84F29A4924E984E700143393 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				84F29A4A24E984FB00143393 /* ABButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 		CF974AF89B39BDDFA4E57271 /* Pods */ = {
@@ -352,14 +355,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				842F37FC24E40EDA008C4A44 /* ABTextField.swift in Sources */,
+				84F29A4824E9830600143393 /* ABAlertVC.swift in Sources */,
 				842F37E924E32426008C4A44 /* ABTitleLabel.swift in Sources */,
 				842F37F224E32770008C4A44 /* ABImageView.swift in Sources */,
 				842F37EB24E32538008C4A44 /* ABBodyLabel.swift in Sources */,
 				842F37DA24E2E661008C4A44 /* AddNewContactVC.swift in Sources */,
+				84F29A4B24E984FB00143393 /* ABButton.swift in Sources */,
 				842F37C124E2E587008C4A44 /* AppDelegate.swift in Sources */,
 				8434750524E5477A0052692F /* ABInputView.swift in Sources */,
 				84F29A4024E6B00C00143393 /* AuthService.swift in Sources */,
-				842F37F924E40D45008C4A44 /* ContacstEditCell.swift in Sources */,
 				842F37C324E2E587008C4A44 /* SceneDelegate.swift in Sources */,
 				842F37E324E31C0B008C4A44 /* SFSymbols.swift in Sources */,
 				842F37E124E2F12A008C4A44 /* MainNavigationController.swift in Sources */,
@@ -367,12 +371,12 @@
 				842F37D824E2E626008C4A44 /* ContactsVC.swift in Sources */,
 				84F29A4424E82C5900143393 /* Contactskeys.swift in Sources */,
 				84F29A4224E7F8FE00143393 /* UserService.swift in Sources */,
-				842F37F724E40D22008C4A44 /* ContactsAddCell.swift in Sources */,
 				8434750324E46D270052692F /* UserData.swift in Sources */,
 				842F37F424E3C628008C4A44 /* ABEmptyStateView.swift in Sources */,
 				846BD89A24E68B1D00A43A13 /* ABDisplayView.swift in Sources */,
 				842F37E624E31E2B008C4A44 /* UIViewController + Ext.swift in Sources */,
 				842F37DC24E2E6BE008C4A44 /* ContactInfoVC.swift in Sources */,
+				84F29A4624E9578400143393 /* UserImageUrlData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,7 +523,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.TobaIbrahim.addressBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -538,7 +542,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.TobaIbrahim.addressBook;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

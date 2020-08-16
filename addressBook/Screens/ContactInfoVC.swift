@@ -71,8 +71,9 @@ class ContactInfoVC: UIViewController {
     let contactImage:ABImageView = {
         let image       = ABImageView(frame: .zero)
         image.image     = SFSymbols.icon
-        image.layer.cornerRadius = 17
+        image.layer.cornerRadius = 96 / 2
         image.tintColor = .systemGray
+        
         return image
     }()
     
@@ -108,13 +109,15 @@ class ContactInfoVC: UIViewController {
        
         view.backgroundColor   = .systemGray5
         
-        let firstNameDisplayView    = ABDisplayView(displayView: firstNameLabelField, title: "First Name")
-        let lastNameDisplayView     = ABDisplayView(displayView: lastNameLabelField, title: "Last Name")
-        let emailDisplayView        = ABDisplayView(displayView: emailLabelField, title: "Email")
-        let nickNameDisplayView     = ABDisplayView(displayView: nickNameLabelField, title: "Nick Name")
-        let PhoneNumberDisplayView  = ABDisplayView(displayView: PhoneNumberLabelField, title: "Phone")
-        let AddressDisplayView      = ABDisplayView(displayView: AddressLabelField, title: "Address")
+        let height:CGFloat =  40
+        let addressHeight:CGFloat = 120
         
+        let firstNameDisplayView    = ABDisplayView(displayView: firstNameLabelField, title: "First Name", height: 40)
+        let lastNameDisplayView     = ABDisplayView(displayView: lastNameLabelField, title: "Last Name", height: height)
+        let emailDisplayView        = ABDisplayView(displayView: emailLabelField, title: "Email", height: height)
+        let nickNameDisplayView     = ABDisplayView(displayView: nickNameLabelField, title: "Nick Name", height: height)
+        let PhoneNumberDisplayView  = ABDisplayView(displayView: PhoneNumberLabelField, title: "Phone", height: height)
+        let AddressDisplayView      = ABDisplayView(displayView: AddressLabelField, title: "Address", height: addressHeight)
         AddressDisplayView.underLine.isHidden = true
         
         guard let safeImageUrl     = Contact?.imageURL else {return}
@@ -147,55 +150,44 @@ class ContactInfoVC: UIViewController {
         navigationItem.rightBarButtonItem  = EditButton
         navigationItem.leftBarButtonItem   = backArrowButton
         
-        
         contactImage.centerX(inView: view, topAnchor: view.topAnchor, paddingTop: 70)
         contactImage.setDimensions(width: 96, height: 96)
         titleLabel.centerX(inView: view, topAnchor: contactImage.bottomAnchor, paddingTop: 10)
         separatorLine.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 25)
         nickNameLabel.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 1)
         
+        let paddingTop:CGFloat  = 30
+        let paddingLeft:CGFloat = 10
         
-        
-        firstNameDisplayView.centerX(inView: view, topAnchor: separatorLine.bottomAnchor, paddingTop: 30)
-        firstNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: 10,height: 40)
-        lastNameDisplayView.centerX(inView: view, topAnchor: firstNameDisplayView.bottomAnchor, paddingTop: 30)
-        lastNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: 10,height: 40)
-        emailDisplayView.centerX(inView: view, topAnchor: lastNameDisplayView.bottomAnchor, paddingTop: 30)
-        emailDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: 10,height: 40)
-        PhoneNumberDisplayView.centerX(inView: view, topAnchor: emailDisplayView.bottomAnchor, paddingTop: 30)
-        PhoneNumberDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: 10,height: 40)
-        nickNameDisplayView.centerX(inView: view, topAnchor: PhoneNumberDisplayView.bottomAnchor, paddingTop: 30)
-        nickNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: 10,height: 40)
-        AddressDisplayView.centerX(inView: view, topAnchor: nickNameDisplayView.bottomAnchor, paddingTop: 30)
-        AddressDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: 10,height: 40)
-        
-        
+        firstNameDisplayView.centerX(inView: view, topAnchor: separatorLine.bottomAnchor, paddingTop: paddingTop)
+        firstNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        lastNameDisplayView.centerX(inView: view, topAnchor: firstNameDisplayView.bottomAnchor, paddingTop: paddingTop)
+        lastNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        emailDisplayView.centerX(inView: view, topAnchor: lastNameDisplayView.bottomAnchor, paddingTop: paddingTop)
+        emailDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        PhoneNumberDisplayView.centerX(inView: view, topAnchor: emailDisplayView.bottomAnchor, paddingTop: paddingTop)
+        PhoneNumberDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        nickNameDisplayView.centerX(inView: view, topAnchor: PhoneNumberDisplayView.bottomAnchor, paddingTop: paddingTop)
+        nickNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        AddressDisplayView.centerX(inView: view, topAnchor: nickNameDisplayView.bottomAnchor, paddingTop: paddingTop)
+        AddressDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
     }
-    
     
 
     @objc func addButtonPressed() {
-            
-        
         dismiss(animated: true, completion: nil)
-        
     }
     
     
     @objc func editButtonPressed() {
         print("DEBUG: Edit button pressed...")
         
-        let destVC        = AddNewContactVC()
+        let destVC               = AddNewContactVC()
         destVC.contactNameString = passedOverContactName
         destVC.inEditingMode = true
         // pass the name string for the user that will be edited...
-        let navController = UINavigationController(rootViewController: destVC)
-        present(navController, animated: true)
-        modalPresentationStyle = .overCurrentContext
-        
-        
+        navigationController?.pushViewController(destVC, animated: true)
     }
-    
     
     
     deinit {
@@ -210,5 +202,4 @@ extension ContactInfoVC: UITextFieldDelegate {
         editButtonPressed()
         return true
     }
-    
 }

@@ -21,7 +21,7 @@ class MainNavigationController: UINavigationController {
             guard let nav = viewControllers.first as? UINavigationController else {return}
             guard let contactsVC = nav.viewControllers.first as? ContactsVC else {return}
             
-            contactsVC.Contact = self.Contact
+            contactsVC.contact = self.Contact
         }
     }
     

@@ -26,7 +26,7 @@ class ABImageView: UIImageView {
     
     private func configure() {
         
-        guard let avatarPlaceholder = UIImage(named: "john") else {
+        guard let avatarPlaceholder = SFSymbols.icon else {
             print("Check Image Name!")
             
             return
@@ -45,7 +45,7 @@ class ABImageView: UIImageView {
 
         if let image = cache.object(forKey: urlString as NSString) {
             self.image = image
-
+            
             return
         }
 

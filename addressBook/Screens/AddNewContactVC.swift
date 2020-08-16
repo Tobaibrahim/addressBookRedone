@@ -15,7 +15,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     
     var contactNameString: String?
     var inEditingMode:Bool!
-    
+    var imageTapped      = false
     var contactNamePath  = String()
     var contactImageUrl  = String()
     
@@ -23,14 +23,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     var Contact: UserData? {
         didSet {
             print("DEBUG: Did set user in addNewContacts")
-            if inEditingMode == true {
-            firstNameTextField.text   = Contact?.firstName
-            lastNameTextField.text    = Contact?.lastName
-            PhoneNumberTextField.text = Contact?.PhoneNumber
-            emailTextField.text       = Contact?.email
-            AddressTextField.text     = Contact?.Address
-            nickNameTextField.text    = Contact?.nickName
-            }
+            configureEditMode()
         }
     }
     
@@ -155,15 +148,26 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         contactImage.centerX(inView: view, topAnchor: view.topAnchor, paddingTop: 70)
         contactImage.setDimensions(width: 96, height: 96)
         titleLabel.centerX(inView: view, topAnchor: contactImage.bottomAnchor, paddingTop: 10)
-        separatorLine.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 25)
+        separatorLine.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 5)
         
-        firstNameInputView.anchor(top: separatorLine.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 50, paddingLeft: 10, paddingRight: 10, height: 60)
-        lastNameInputView.anchor(top: firstNameInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 10, paddingLeft: 10,  paddingRight: 10, height: 60)
-        emailInputView.anchor(top: lastNameInputView.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 10, paddingLeft: 10, paddingRight: 10, height: 60)
-        nickNameInputView.anchor(top: emailInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 10, paddingLeft: 10,  paddingRight: 10, height: 60)
-        PhoneNumberInputView.anchor(top: nickNameInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 10, paddingLeft: 10, paddingRight: 10, height: 60)
-        AddressInputView.anchor(top: PhoneNumberInputView.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 10, paddingLeft: 10, paddingRight: 10, height: 60)
-        
+        firstNameInputView.anchor(top: separatorLine.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 50, paddingLeft: 10, paddingRight: 10, height: 45)
+        lastNameInputView.anchor(top: firstNameInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
+         nickNameInputView.anchor(top: lastNameInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
+        emailInputView.anchor(top: nickNameInputView.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
+        PhoneNumberInputView.anchor(top: emailInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
+        AddressInputView.anchor(top: PhoneNumberInputView.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
+    
+    }
+    
+    func configureEditMode() {
+        if inEditingMode == true {
+            firstNameTextField.text   = Contact?.firstName
+            lastNameTextField.text    = Contact?.lastName
+            PhoneNumberTextField.text = Contact?.PhoneNumber
+            emailTextField.text       = Contact?.email
+            AddressTextField.text     = Contact?.Address
+            nickNameTextField.text    = Contact?.nickName
+        }
     }
     
     @objc func backButtonPressed() {
@@ -179,8 +183,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     
     @objc func saveButtonPressed() {
         print("DEBUG: Textfileds saved")
-        
-        
+    
         guard let firstName    = firstNameTextField.text else {return}
         guard let lastName     = lastNameTextField.text else {return}
         guard let email        = emailTextField.text else {return}
@@ -188,33 +191,31 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         guard let nickName     = nickNameTextField.text else {return}
         guard let adddress     = AddressTextField.text else {return}
         
-        
-        
         if (firstNameTextField.text.isEmpty || lastNameTextField.text.isEmpty || nickNameTextField.text.isEmpty) {
-            //            PSTAlertOnMainThread(title: "Missing Information", message: "Please fill in the first name and last name .😅", buttonTitle: "Okay")
+            presentABAlertOnMainThread(title: "Missing Information", message: "Please fill in the first name,last name and nick name fields .😅", buttonTitle: "Okay")
             print("DEBUG: Missing fields")
         }
             
+        else {
             
             if inEditingMode {
-                
                 AuthService.shared.editContact(currentUser: contactNameString!, firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress)
+                AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNameString!)
+                // set a way to know if the image has been changed??
             }
                 
             else {
                 AuthService.shared.addContact(firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress, contactImageUrl: "placeholder")
-                contactNamePath = firstName + lastName
+                contactNamePath = firstName  + lastName
                 AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNamePath)
-                
                 // alert showing user has been added?
             }
-        
-        dismiss(animated: true, completion: nil)
-        
-        
+            
+            dismiss(animated: true, completion: nil)
+
+        }
         
     }
-    
     
     deinit {
         print("DEBUG: Addnewcontact WAS DEINIT")

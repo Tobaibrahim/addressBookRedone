@@ -24,7 +24,7 @@ class ABDisplayView: UIView {
       super.init(frame:frame)
   }
  
- init(displayView:ABBodyLabel,title:String) {
+    init(displayView:ABBodyLabel,title:String,height:CGFloat) {
      super.init(frame:.zero)
      
      addSubview(displayView)
@@ -33,11 +33,10 @@ class ABDisplayView: UIView {
      backgroundColor           = .systemGray5
      
      titleLabel.text = title
-     titleLabel.anchor(leading: self.leadingAnchor, paddingTop: 10, paddingLeft: 10,height: 20)
+     titleLabel.anchor(leading: self.leadingAnchor, paddingTop: 8, paddingLeft: 10,height: 20)
      underLine.centerX(inView: self, topAnchor: displayView.bottomAnchor, paddingTop: 2)
-     displayView.anchor(top: titleLabel.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, paddingTop: 6, paddingLeft: 10, height: 40)
+     displayView.anchor(top: titleLabel.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, paddingTop: 1, paddingLeft: 10, height: height)
      underLine.setDimensions(width: 360, height: 1)
-//    displayView.backgroundColor = .systemPink
  }
   
   required init?(coder: NSCoder) {

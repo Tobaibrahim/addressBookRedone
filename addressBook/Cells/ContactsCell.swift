@@ -10,12 +10,7 @@ import UIKit
 
 class ContactsCell: UITableViewCell {
     
-    
-    var Contact: UserData? {
-           didSet {
-               print("DEBUG: Did set user in contactsCell")
-           }
-       }
+
     
     
        static let reuseID  = "ContactsCell"
@@ -35,13 +30,11 @@ class ContactsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    func set(contact:UserData){
-//        titleLabel.text = contact.firstName[IndexPath.]
-//        nickNameLabel.text = contact.nickName
-//
-//             // this function allows us to pass in the folower class/ login property and call it in our folowers list vc
-//
-//         }
+    func set(contact:UserData){
+        nickNameLabel.text = contact.nickName
+        
+             // this function allows us to pass in the folower class/ login property and call it in our folowers list vc
+         }
     
     
     private func configure () {
@@ -51,7 +44,7 @@ class ContactsCell: UITableViewCell {
         addSubview(nickNameLabel)
         
         backgroundColor           = .systemGray5
-        editImageView.image       = UIImage(named: "john")
+        editImageView.image       = SFSymbols.icon
         editImageView.image       = editImageView.image!.withRenderingMode(.alwaysTemplate)
         editImageView.tintColor   = UIColor.systemGray
         editImageView.layer.cornerRadius = 10
