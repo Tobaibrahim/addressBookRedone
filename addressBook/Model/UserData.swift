@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 struct UserData {
 
     let firstName:String
@@ -32,19 +31,5 @@ struct UserData {
         self.imageURL  = dictionary["ContactImageURL"] as? String ?? ""
         self.keys      = keys
     }
-    
 
 }
-
-
-//struct UserData {
-//
-//    let firstName:[String]
-//    let lastName: [String]
-//    let email: [String]
-//    let nickName:[String]
-//    let PhoneNumber:[String]
-//    let Address:[String]
-//    let imageURL:[String]
-//
-//}

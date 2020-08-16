@@ -32,7 +32,7 @@ struct UserService {
     
     func fetchKey(completion: @escaping(Contactskeys) -> Void) {
         ref.child("NewContacts").observeSingleEvent(of: .value) { (snapshot) in
-        // pass in the keyvalue to get specific user
+            // pass in the keyvalue to get specific user
             let snapshopValue       = snapshot.value as? NSDictionary
             guard let values        = snapshopValue?.allKeys else {return}
             guard let values2       = snapshopValue?.allValues else {return}
@@ -42,14 +42,20 @@ struct UserService {
             completion(keys)
         }
         
-        
+    }
+    
+    
+       func fetchImageUrl(completion: @escaping(Contactskeys) -> Void) {
+           ref.child("NewContacts").observeSingleEvent(of: .value) { (snapshot) in
+               // pass in the keyvalue to get specific user
+               let snapshopValue       = snapshot.value as? NSDictionary
+               guard let values        = snapshopValue?.allKeys else {return}
+               guard let values2       = snapshopValue?.allValues else {return}
+               guard let val           = values as? [String] else {return}
+               print("DEBUG: VALUES = \(values2)")
+               let keys = Contactskeys(keys: val.sorted())
+               completion(keys)
+           }
     
 }
-
-
-
-
-
-        
-  
 }

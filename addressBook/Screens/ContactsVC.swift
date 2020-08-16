@@ -13,14 +13,16 @@ import Firebase
 class ContactsVC: UIViewController {
     
     //MARK: - Properties
-    var numberOfRows: Int!
     
     var contactNameString: String!
-    
     
     var Contact: UserData? {
         didSet {
             print("DEBUG: Did set user in contacts")
+            guard let safeContactKey = contactKey?.keys else {return}
+            if safeContactKey.isEmpty {
+                isArrayEmpty = true
+            }
         }
     }
     
@@ -181,14 +183,9 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         let navController = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
         
-        
     }
-    
-    
-    
+
 }
-
-
 
 extension ContactsVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

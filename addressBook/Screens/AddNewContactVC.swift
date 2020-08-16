@@ -13,10 +13,28 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     
     //MARK: - Properties
     
-    var contactNamePath     = String()
-    var contactImageUrl     = String()
+    var contactNameString: String?
+    var inEditingMode:Bool!
     
-        
+    var contactNamePath  = String()
+    var contactImageUrl  = String()
+    
+    
+    var Contact: UserData? {
+        didSet {
+            print("DEBUG: Did set user in addNewContacts")
+            if inEditingMode == true {
+            firstNameTextField.text   = Contact?.firstName
+            lastNameTextField.text    = Contact?.lastName
+            PhoneNumberTextField.text = Contact?.PhoneNumber
+            emailTextField.text       = Contact?.email
+            AddressTextField.text     = Contact?.Address
+            nickNameTextField.text    = Contact?.nickName
+            }
+        }
+    }
+    
+    
     let imagePicker:UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
@@ -93,9 +111,14 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     
     //MARK: - Helpers
     
+    func fetchUsers(user:String) {
+        UserService.shared.fetchUser(user: user) { (userData) in
+            self.Contact = userData
+        }
+    }
     
     func configureUI() {
-        
+        fetchUsers(user:contactNameString ?? "value")
         view.backgroundColor   = .systemGray5
         imagePicker.delegate = self
         
@@ -166,24 +189,32 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         guard let adddress     = AddressTextField.text else {return}
         
         
+        
         if (firstNameTextField.text.isEmpty || lastNameTextField.text.isEmpty || nickNameTextField.text.isEmpty) {
             //            PSTAlertOnMainThread(title: "Missing Information", message: "Please fill in the first name and last name .😅", buttonTitle: "Okay")
             print("DEBUG: Missing fields")
         }
             
-        else {
-            AuthService.shared.addContact(firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress, contactImageUrl: "placeholder")
-            contactNamePath = firstName + lastName
-            AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNamePath)
-
-            // alert showing user has been added?
             
-            dismiss(animated: true, completion: nil)
-        }
+            if inEditingMode {
+                
+                AuthService.shared.editContact(currentUser: contactNameString!, firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress)
+            }
+                
+            else {
+                AuthService.shared.addContact(firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress, contactImageUrl: "placeholder")
+                contactNamePath = firstName + lastName
+                AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNamePath)
+                
+                // alert showing user has been added?
+            }
+        
+        dismiss(animated: true, completion: nil)
+        
         
         
     }
-
+    
     
     deinit {
         print("DEBUG: Addnewcontact WAS DEINIT")

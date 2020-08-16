@@ -12,10 +12,10 @@ import Firebase
 class ContactInfoVC: UIViewController {
     
     
-    //MARK: Properties
+    //MARK: - Properties
     
     
-    var passedOverContactName: String!
+    var passedOverContactName: String?
     
     
     var Contact: UserData? {
@@ -68,8 +68,6 @@ class ContactInfoVC: UIViewController {
         return title
     }()
     
-    
-    
     let contactImage:ABImageView = {
         let image       = ABImageView(frame: .zero)
         image.image     = SFSymbols.icon
@@ -87,18 +85,18 @@ class ContactInfoVC: UIViewController {
         return line
     }()
     
-    //MARK: Life Cycle
+    //MARK:- Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchUsers(user:passedOverContactName)
+        fetchUsers(user:passedOverContactName ?? "value")
     }
     
     
-    //MARK: Helpers
+    //MARK: - Helpers
     
     func fetchUsers(user:String) {
         UserService.shared.fetchUser(user: user) { (userData) in
@@ -116,8 +114,11 @@ class ContactInfoVC: UIViewController {
         let nickNameDisplayView     = ABDisplayView(displayView: nickNameLabelField, title: "Nick Name")
         let PhoneNumberDisplayView  = ABDisplayView(displayView: PhoneNumberLabelField, title: "Phone")
         let AddressDisplayView      = ABDisplayView(displayView: AddressLabelField, title: "Address")
+        
         AddressDisplayView.underLine.isHidden = true
         
+        guard let safeImageUrl     = Contact?.imageURL else {return}
+        contactImage.downloadImage(from: safeImageUrl)
         titleLabel.text            = ((Contact?.firstName ?? "") + (Contact?.lastName ?? ""))
         nickNameLabel.text         = Contact?.nickName
         firstNameLabelField.text   = Contact?.firstName
@@ -172,24 +173,28 @@ class ContactInfoVC: UIViewController {
     }
     
     
-    
-    
+
     @objc func addButtonPressed() {
+            
+        
         dismiss(animated: true, completion: nil)
         
     }
     
     
     @objc func editButtonPressed() {
-        print("DEBUG: Textfileds saved")
+        print("DEBUG: Edit button pressed...")
+        
         let destVC        = AddNewContactVC()
+        destVC.contactNameString = passedOverContactName
+        destVC.inEditingMode = true
+        // pass the name string for the user that will be edited...
         let navController = UINavigationController(rootViewController: destVC)
         present(navController, animated: true)
         modalPresentationStyle = .overCurrentContext
         
         
     }
-    
     
     
     
