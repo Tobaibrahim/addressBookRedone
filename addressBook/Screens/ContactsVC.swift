@@ -113,7 +113,7 @@ class ContactsVC: UIViewController {
         tableView.delegate     = self
         tableView.dataSource   = self
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             if self.nameArray.isEmpty {
                 self.showEmptyStateView(with: " Tap on the  +  to add a new contact", in: self.view)
             }
@@ -181,6 +181,7 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         
         guard editingStyle == .delete else {return}
         nameArray.remove(at: indexPath.row)
+        imageArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
         let path = contactKey?.keys[indexPath.row]
         AuthService.shared.deleteContact(user: path!)
