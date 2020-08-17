@@ -133,13 +133,20 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo:scrollView.widthAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: 685).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 900).isActive = true
 
+    }
+    
+    func dismissKeyboard(){
+        let tap = UITapGestureRecognizer(target: self.view, action:#selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
     func configureUI() {
         configureScrollView()
         fetchUsers(user:contactNameString ?? "value")
+        dismissKeyboard()
         view.backgroundColor   = .systemGray5
         imagePicker.delegate = self
         

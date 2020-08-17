@@ -123,7 +123,7 @@ class ContactInfoVC: UIViewController {
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo:scrollView.widthAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: 685).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 700).isActive = true
         
     }
     
@@ -219,4 +219,7 @@ extension ContactInfoVC: UITextFieldDelegate {
         editButtonPressed()
         return true
     }
+    
+    
+    
 }

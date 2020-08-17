@@ -36,6 +36,7 @@ class ContactsVC: UIViewController {
     let searchBar:UISearchBar = {
         let searchBar         =  UISearchBar(frame: .zero)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
+//        searchBar.showsCancelButton = true
         return searchBar
     }()
     
@@ -88,13 +89,21 @@ class ContactsVC: UIViewController {
         }
     }
     
+//     func dismissKeyboard() {
+//        searchBar.resignFirstResponder()
+//    }
     func configureUI() {
+        
         let addButton          = UIBarButtonItem(image: SFSymbols.addButton, style: .done, target: self, action:#selector(addButtonPressed))
         addButton.tintColor    = .systemBlue
         view.backgroundColor   = .systemGray5
         navigationItem.rightBarButtonItem  = addButton
         navigationItem.hidesBackButton = true
         
+        let tap = UITapGestureRecognizer(target: self.view, action:#selector(UIView.endEditing(_:)))
+        tap.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(tap)
+       
         searchBar.delegate     = self
         searchBar.sizeToFit()
         tableView.frame        = view.frame
@@ -118,6 +127,7 @@ class ContactsVC: UIViewController {
     }
     
     
+    
     func loadState() {
         fetchKeys()
         
@@ -129,13 +139,12 @@ class ContactsVC: UIViewController {
                 self.tableView.isHidden = true
             }
             else {
-                
                 DispatchQueue.main.async {
                     self.view.removeEmptyStateView()
                     self.navigationController?.navigationBar.prefersLargeTitles = true
                     self.searchBar.isHidden = false
-                    self.tableView.reloadData()
                     self.tableView.isHidden = false
+                    self.tableView.reloadData()
                 }
                 
             }
@@ -144,8 +153,7 @@ class ContactsVC: UIViewController {
     }
     
     
-    
-    
+
     @objc func reloadTableView() {
         loadState()
     }
@@ -169,8 +177,9 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
             cell.editImageView.downloadImage(from: self.imageArray[indexPath.row])
         }
         
-        if self.issearching {cell.titleLabel.text = self.searchContacts[indexPath.row]}
+        if self.issearching {cell.titleLabel.text = self.searchContacts[indexPath.row]
             
+        }
         else {cell.titleLabel.text = nameArray[indexPath.row]}
         return cell
     }
@@ -215,13 +224,23 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         present(navController, animated: true)
     }
     
+    
 }
 
 extension ContactsVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         issearching = true
+        searchBar.showsCancelButton = true
         searchContacts = nameArray.filter({$0.prefix(searchText.count) == searchText})
-        tableView.reloadData()
-        
+            tableView.reloadData()
     }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+
+    }
+
+
 }
+
