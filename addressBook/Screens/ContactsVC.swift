@@ -31,7 +31,8 @@ class ContactsVC: UIViewController {
     var contactKey: Contactskeys? {
         didSet {
             print("DEBUG: Did set key in contacts")
-            nameArray.append(contentsOf: contactKey!.keys)
+            guard let safeContactKeys = self.contactKey else {return}
+            self.nameArray = safeContactKeys.keys
         }
     }
     
@@ -60,15 +61,29 @@ class ContactsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        createObservers()
     }
     
     override func loadView() {
         super.loadView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+    }
     
     
     //MARK: - Helpers
+    
+    func createObservers() {
+          let name = NSNotification.Name(notificationKeys.reloadTableView)
+          NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: name, object: nil)
+          print("DEBUG: OBSERVER RELOADED TABLEVIEW")
+      }
+
+    
+    
     func fetchUsers(user:String) {
         UserService.shared.fetchUser(user: user) { (userData) in
             self.contact = userData
@@ -91,7 +106,6 @@ class ContactsVC: UIViewController {
         view.backgroundColor   = .systemGray5
         navigationItem.rightBarButtonItem  = addButton
         navigationItem.hidesBackButton = true
-        navigationController?.navigationBar.prefersLargeTitles = true
 
         searchBar.delegate     = self
         searchBar.sizeToFit()
@@ -107,6 +121,8 @@ class ContactsVC: UIViewController {
                 self.view.addSubview(self.tableView)
                 self.view.addSubview(self.searchBar)
                 self.navigationItem.titleView = self.searchBar
+                self.navigationController?.navigationBar.prefersLargeTitles = true
+
             }
         }
         
@@ -119,6 +135,13 @@ class ContactsVC: UIViewController {
         present(navController, animated: true)
     }
     
+    
+    @objc func reloadTableView() {
+        fetchKeys()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.tableView.reloadData()
+        }
+    }
     deinit {
         print("DEBUG: Contacts WAS DEINIT")
     }
@@ -131,16 +154,18 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         let cell =  tableView.dequeueReusableCell(withIdentifier: ContactsCell.reuseID) as! ContactsCell
         
         cell.editImageView.image = SFSymbols.icon
-        let path = contactKey?.keys[indexPath.row]
+        let path = nameArray[indexPath.row]
         
-        UserService.shared.fetchImage(user: path!) { (value) in
-            self.imageArray.append( value)
+        UserService.shared.fetchImage(user: path) { (value) in
+            self.imageArray.insert(value, at: indexPath.row)
             cell.editImageView.downloadImage(from: self.imageArray[indexPath.row])
         }
         
         if self.issearching {cell.titleLabel.text = self.searchContacts[indexPath.row]}
         else {cell.titleLabel.text = nameArray[indexPath.row]}
+        
         return cell
+        
     }
     
     
@@ -159,6 +184,8 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         tableView.deleteRows(at: [indexPath], with: .left)
         let path = contactKey?.keys[indexPath.row]
         AuthService.shared.deleteContact(user: path!)
+        reloadTableView()
+
         
     }
     

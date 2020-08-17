@@ -28,6 +28,8 @@
 		8434750324E46D270052692F /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434750224E46D270052692F /* UserData.swift */; };
 		8434750524E5477A0052692F /* ABInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434750424E5477A0052692F /* ABInputView.swift */; };
 		846BD89A24E68B1D00A43A13 /* ABDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BD89924E68B1D00A43A13 /* ABDisplayView.swift */; };
+		849968B424EA60F4002E07F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849968B324EA60F4002E07F2 /* Constants.swift */; };
+		84E4B15724EA7328008640E3 /* ABLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4B15624EA7328008640E3 /* ABLoadingView.swift */; };
 		84F29A4024E6B00C00143393 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A3F24E6B00C00143393 /* AuthService.swift */; };
 		84F29A4224E7F8FE00143393 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4124E7F8FE00143393 /* UserService.swift */; };
 		84F29A4424E82C5900143393 /* Contactskeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4324E82C5900143393 /* Contactskeys.swift */; };
@@ -61,6 +63,8 @@
 		8434750224E46D270052692F /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		8434750424E5477A0052692F /* ABInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABInputView.swift; sourceTree = "<group>"; };
 		846BD89924E68B1D00A43A13 /* ABDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABDisplayView.swift; sourceTree = "<group>"; };
+		849968B324EA60F4002E07F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		84E4B15624EA7328008640E3 /* ABLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABLoadingView.swift; sourceTree = "<group>"; };
 		84F29A3F24E6B00C00143393 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		84F29A4124E7F8FE00143393 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		84F29A4324E82C5900143393 /* Contactskeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contactskeys.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 			children = (
 				842F37E024E2F12A008C4A44 /* MainNavigationController.swift */,
 				842F37E224E31C0B008C4A44 /* SFSymbols.swift */,
+				849968B324EA60F4002E07F2 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				8434750424E5477A0052692F /* ABInputView.swift */,
 				846BD89924E68B1D00A43A13 /* ABDisplayView.swift */,
 				84F29A4724E9830600143393 /* ABAlertVC.swift */,
+				84E4B15624EA7328008640E3 /* ABLoadingView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -363,6 +369,7 @@
 				84F29A4B24E984FB00143393 /* ABButton.swift in Sources */,
 				842F37C124E2E587008C4A44 /* AppDelegate.swift in Sources */,
 				8434750524E5477A0052692F /* ABInputView.swift in Sources */,
+				84E4B15724EA7328008640E3 /* ABLoadingView.swift in Sources */,
 				84F29A4024E6B00C00143393 /* AuthService.swift in Sources */,
 				842F37C324E2E587008C4A44 /* SceneDelegate.swift in Sources */,
 				842F37E324E31C0B008C4A44 /* SFSymbols.swift in Sources */,
@@ -377,6 +384,7 @@
 				842F37E624E31E2B008C4A44 /* UIViewController + Ext.swift in Sources */,
 				842F37DC24E2E6BE008C4A44 /* ContactInfoVC.swift in Sources */,
 				84F29A4624E9578400143393 /* UserImageUrlData.swift in Sources */,
+				849968B424EA60F4002E07F2 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

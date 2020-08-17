@@ -14,7 +14,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     //MARK: - Properties
     
     var contactNameString: String?
-    var inEditingMode:Bool!
+    var inEditingMode    :Bool!
     var imageTapped      = false
     var contactNamePath  = String()
     var contactImageUrl  = String()
@@ -171,18 +171,18 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     }
     
     @objc func backButtonPressed() {
-        print("DEBUG: back button pressed")
         dismiss(animated: true, completion: nil)
         
     }
     
     @objc func profileImageTapped() {
-        print("DEBUG: Profile image tapped")
         present(imagePicker, animated: true, completion: nil)
     }
     
     @objc func saveButtonPressed() {
-        print("DEBUG: Textfileds saved")
+        
+        let name = Notification.Name(rawValue: notificationKeys.reloadTableView)
+        NotificationCenter.default.post(name: name, object: nil)
     
         guard let firstName    = firstNameTextField.text else {return}
         guard let lastName     = lastNameTextField.text else {return}
@@ -214,7 +214,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
             dismiss(animated: true, completion: nil)
 
         }
-        
+    
     }
     
     deinit {
