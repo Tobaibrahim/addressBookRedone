@@ -25,28 +25,27 @@ extension UIViewController {
     
     
     
-    func showEmptyStateView (with message:String, in view:UIView) {
-        let emptyStateView = ABEmptyStateView(message: message)
-        emptyStateView.frame = view.bounds
-        view.addSubview(emptyStateView)
-    }
-    
     
 }
 
 extension UIView {
     
-    func showBlurLoader() {
-        let blurLoader = BlurLoader(frame: frame)
-        self.addSubview(blurLoader)
-    }
     
-    func removeBlurLoader() {
-        if let blurLoader = subviews.first(where: { $0 is BlurLoader }) {
-            blurLoader.removeFromSuperview()
-        }
-    }
+
     
+    
+    
+//    func showBlurLoader() {
+//        let blurLoader = BlurLoader(frame: frame)
+//        self.addSubview(blurLoader)
+//    }
+//
+//    func removeBlurLoader() {
+//        if let blurLoader = subviews.first(where: { $0 is BlurLoader }) {
+//            blurLoader.removeFromSuperview()
+//        }
+//    }
+
     
     func anchor(top: NSLayoutYAxisAnchor? = nil,
                 leading: NSLayoutXAxisAnchor? = nil,
@@ -123,5 +122,19 @@ extension UIView {
                bottom: view.bottomAnchor, trailing: view.rightAnchor)
     }
     
+    
+    func showEmptyStateView (with message:String, in view:UIView) {
+        let emptyStateView = ABEmptyStateView(message: message)
+        emptyStateView.frame = view.bounds
+        view.addSubview(emptyStateView)
+    }
+    
+    func removeEmptyStateView () {
+        if let emptyStateView = subviews.first(where: { $0 is ABEmptyStateView }) {
+        emptyStateView.removeFromSuperview()
+    }
+    
+    
 
+}
 }

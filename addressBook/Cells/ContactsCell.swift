@@ -49,9 +49,9 @@ class ContactsCell: UITableViewCell {
         editImageView.tintColor   = UIColor.systemGray
         editImageView.layer.cornerRadius = 10
     
-        titleLabel.anchor(leading: editImageView.leadingAnchor, paddingLeft: 60,height: 40)
+        titleLabel.anchor(top:self.topAnchor,leading: editImageView.leadingAnchor,paddingTop: 20, paddingLeft: 60,height: 40)
         nickNameLabel.anchor(top: titleLabel.bottomAnchor,leading:editImageView.leadingAnchor, paddingTop: 0,paddingLeft: 60,height: 20)
-        editImageView.anchor(top:self.topAnchor ,leading: self.leadingAnchor, paddingLeft: 20, width: 40, height: 40)
+        editImageView.anchor(top:self.topAnchor ,leading: self.leadingAnchor, paddingTop: 20, paddingLeft: 20, width: 40, height: 40)
 }
 
    

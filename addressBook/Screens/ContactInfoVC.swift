@@ -11,21 +11,17 @@ import Firebase
 
 class ContactInfoVC: UIViewController {
     
-    
     //MARK: - Properties
-    
     
     var passedOverContactName: String?
     
-    
     var Contact: UserData? {
-           didSet {
-               print("DEBUG: Did set user in contactInfo")
+        didSet {
+            print("DEBUG: Did set user in contactInfo")
             configureUI()
-
-           }
-       }
-        
+        }
+    }
+    
     private lazy var firstNameLabelField:ABBodyLabel = {
         let firstName = ABBodyLabel()
         return firstName
@@ -53,7 +49,6 @@ class ContactInfoVC: UIViewController {
         return firstName
     }()
     
-    
     let titleLabel: ABTitleLabel = {
         let title       = ABTitleLabel(textAlignment: .left, fontsSize: 18)
         title.text      = "Contact"
@@ -64,7 +59,7 @@ class ContactInfoVC: UIViewController {
     let nickNameLabel: ABBodyLabel = {
         let title       = ABBodyLabel(textAlignment: .center, fontsSize: 13)
         title.text      = "\"NickName\""
-        title.setDimensions(width: 120, height: 20)
+        title.setDimensions(width: 200, height: 20)
         return title
     }()
     
@@ -86,6 +81,20 @@ class ContactInfoVC: UIViewController {
         return line
     }()
     
+    let scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.translatesAutoresizingMaskIntoConstraints  = false
+        sv.showsHorizontalScrollIndicator             = true
+        sv.showsVerticalScrollIndicator               = false
+        return sv
+    }()
+    
+    let contentView: UIView = {
+        let cv = UIView()
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
+    
     //MARK:- Life Cycle
     
     override func viewDidLoad() {
@@ -105,8 +114,21 @@ class ContactInfoVC: UIViewController {
         }
     }
     
+    func configureScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        let contententViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height) // set the scroll view to the
+        scrollView.contentSize = contententViewSize
+        scrollView.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: self.view.bottomAnchor, trailing: self.view.trailingAnchor)
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo:scrollView.widthAnchor).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 685).isActive = true
+        
+    }
+    
     func configureUI() {
-       
+        configureScrollView()
         view.backgroundColor   = .systemGray5
         
         let height:CGFloat =  40
@@ -120,16 +142,16 @@ class ContactInfoVC: UIViewController {
         let AddressDisplayView      = ABDisplayView(displayView: AddressLabelField, title: "Address", height: addressHeight)
         AddressDisplayView.underLine.isHidden = true
         
-        guard let safeImageUrl     = Contact?.imageURL else {return}
+        guard let safeImageUrl      = Contact?.imageURL else {return}
         contactImage.downloadImage(from: safeImageUrl)
-        titleLabel.text            = ((Contact?.firstName ?? "") + (Contact?.lastName ?? ""))
-        nickNameLabel.text         = Contact?.nickName
-        firstNameLabelField.text   = Contact?.firstName
-        lastNameLabelField.text    = Contact?.lastName
-        emailLabelField.text       = Contact?.email
-        nickNameLabelField.text    = Contact?.nickName
-        PhoneNumberLabelField.text = Contact?.PhoneNumber
-        AddressLabelField.text     = Contact?.Address
+        titleLabel.text             = ((Contact?.firstName ?? "") + (Contact?.lastName ?? ""))
+        nickNameLabel.text          = Contact?.nickName
+        firstNameLabelField.text    = Contact?.firstName
+        lastNameLabelField.text     = Contact?.lastName
+        emailLabelField.text        = Contact?.email
+        nickNameLabelField.text     = Contact?.nickName
+        PhoneNumberLabelField.text  = Contact?.PhoneNumber
+        AddressLabelField.text      = Contact?.Address
         
         
         let views = [contactImage,titleLabel,
@@ -138,54 +160,50 @@ class ContactInfoVC: UIViewController {
              PhoneNumberDisplayView,AddressDisplayView,nickNameLabel,nickNameDisplayView]
         
         for views in views {
-            view.addSubview(views)
+            contentView.addSubview(views)
         }
         
-        let EditButton            = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(editButtonPressed))
-        EditButton.tintColor      = .systemBlue
-        
-        let backArrowButton       = UIBarButtonItem(image: SFSymbols.backArrow, style: .done, target: self, action:#selector(addButtonPressed))
-        backArrowButton.tintColor = .systemBlue
+        let EditButton                     = UIBarButtonItem(title: "Edit", style: .done, target: self, action: #selector(editButtonPressed))
+        EditButton.tintColor               = .systemBlue
+        let backArrowButton                = UIBarButtonItem(image: SFSymbols.backArrow, style: .done, target: self, action:#selector(addButtonPressed))
+        backArrowButton.tintColor          = .systemBlue
         
         navigationItem.rightBarButtonItem  = EditButton
         navigationItem.leftBarButtonItem   = backArrowButton
         
-        contactImage.centerX(inView: view, topAnchor: view.topAnchor, paddingTop: 70)
+        contactImage.centerX(inView: contentView, topAnchor: contentView.topAnchor, paddingTop: 70)
         contactImage.setDimensions(width: 96, height: 96)
-        titleLabel.centerX(inView: view, topAnchor: contactImage.bottomAnchor, paddingTop: 10)
-        separatorLine.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 25)
-        nickNameLabel.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 1)
+        titleLabel.centerX(inView: contentView, topAnchor: contactImage.bottomAnchor, paddingTop: 10)
+        separatorLine.centerX(inView: contentView, topAnchor: titleLabel.bottomAnchor, paddingTop: 25)
+        nickNameLabel.centerX(inView: contentView, topAnchor: titleLabel.bottomAnchor, paddingTop: 1)
         
         let paddingTop:CGFloat  = 30
         let paddingLeft:CGFloat = 10
         
-        firstNameDisplayView.centerX(inView: view, topAnchor: separatorLine.bottomAnchor, paddingTop: paddingTop)
-        firstNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
-        lastNameDisplayView.centerX(inView: view, topAnchor: firstNameDisplayView.bottomAnchor, paddingTop: paddingTop)
-        lastNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
-        emailDisplayView.centerX(inView: view, topAnchor: lastNameDisplayView.bottomAnchor, paddingTop: paddingTop)
-        emailDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
-        PhoneNumberDisplayView.centerX(inView: view, topAnchor: emailDisplayView.bottomAnchor, paddingTop: paddingTop)
-        PhoneNumberDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
-        nickNameDisplayView.centerX(inView: view, topAnchor: PhoneNumberDisplayView.bottomAnchor, paddingTop: paddingTop)
-        nickNameDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
-        AddressDisplayView.centerX(inView: view, topAnchor: nickNameDisplayView.bottomAnchor, paddingTop: paddingTop)
-        AddressDisplayView.anchor(leading:view.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        firstNameDisplayView.centerX(inView: contentView, topAnchor: separatorLine.bottomAnchor, paddingTop: paddingTop)
+        firstNameDisplayView.anchor(leading:contentView.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        lastNameDisplayView.centerX(inView: contentView, topAnchor: firstNameDisplayView.bottomAnchor, paddingTop: paddingTop)
+        lastNameDisplayView.anchor(leading:contentView.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        emailDisplayView.centerX(inView: contentView, topAnchor: lastNameDisplayView.bottomAnchor, paddingTop: paddingTop)
+        emailDisplayView.anchor(leading:contentView.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        PhoneNumberDisplayView.centerX(inView: contentView, topAnchor: emailDisplayView.bottomAnchor, paddingTop: paddingTop)
+        PhoneNumberDisplayView.anchor(leading:contentView.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        nickNameDisplayView.centerX(inView: contentView, topAnchor: PhoneNumberDisplayView.bottomAnchor, paddingTop: paddingTop)
+        nickNameDisplayView.anchor(leading:contentView.leadingAnchor,paddingLeft: paddingLeft,height: height)
+        AddressDisplayView.centerX(inView: contentView, topAnchor: nickNameDisplayView.bottomAnchor, paddingTop: paddingTop)
+        AddressDisplayView.anchor(leading:contentView.leadingAnchor,paddingLeft: paddingLeft,height: height)
     }
     
-
+    
     @objc func addButtonPressed() {
         dismiss(animated: true, completion: nil)
     }
     
     
-    @objc func editButtonPressed() {
-        print("DEBUG: Edit button pressed...")
-        
+    @objc func editButtonPressed() {        
         let destVC               = AddNewContactVC()
         destVC.contactNameString = passedOverContactName
         destVC.inEditingMode = true
-        // pass the name string for the user that will be edited...
         navigationController?.pushViewController(destVC, animated: true)
     }
     
@@ -193,7 +211,6 @@ class ContactInfoVC: UIViewController {
     deinit {
         print("DEBUG: ContactsInfo WAS DEINIT")
     }
-    
 }
 
 

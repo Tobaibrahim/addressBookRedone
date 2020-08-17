@@ -137,7 +137,6 @@
 		842F37D424E2E5D4008C4A44 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				842F37FA24E40E90008C4A44 /* TextFields */,
 				842F37D724E2E626008C4A44 /* ContactsVC.swift */,
 				842F37D924E2E661008C4A44 /* AddNewContactVC.swift */,
 				842F37DB24E2E6BE008C4A44 /* ContactInfoVC.swift */,
@@ -183,6 +182,7 @@
 		842F37EF24E32741008C4A44 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				842F37FA24E40E90008C4A44 /* TextFields */,
 				842F37F024E3275F008C4A44 /* ImageViews */,
 				842F37F324E3C628008C4A44 /* ABEmptyStateView.swift */,
 				8434750424E5477A0052692F /* ABInputView.swift */,

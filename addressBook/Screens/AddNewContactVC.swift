@@ -14,7 +14,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     //MARK: - Properties
     
     var contactNameString: String?
-    var inEditingMode    :Bool!
+    var inEditingMode    : Bool!
     var imageTapped      = false
     var contactNamePath  = String()
     var contactImageUrl  = String()
@@ -94,6 +94,20 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         return line
     }()
     
+    let contentView: UIView = {
+        let cv = UIView()
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        return cv
+    }()
+
+    let scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        sv.showsHorizontalScrollIndicator = false
+        sv.showsVerticalScrollIndicator = false
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -109,8 +123,22 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
             self.Contact = userData
         }
     }
+
+    func configureScrollView() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        let contententViewSize = CGSize(width: self.view.frame.width, height: self.view.frame.height) // set the scroll view to the
+        scrollView.contentSize = contententViewSize
+        scrollView.anchor(top: self.view.topAnchor, leading: self.view.leadingAnchor, bottom: self.view.bottomAnchor, trailing: self.view.trailingAnchor)
+        contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalTo:scrollView.widthAnchor).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 685).isActive = true
+
+    }
     
     func configureUI() {
+        configureScrollView()
         fetchUsers(user:contactNameString ?? "value")
         view.backgroundColor   = .systemGray5
         imagePicker.delegate = self
@@ -129,33 +157,33 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
              PhoneNumberInputView,AddressInputView,nickNameInputView]
         
         for views in views {
-            view.addSubview(views)
+            contentView.addSubview(views)
         }
         
         contactImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(profileImageTapped)))
         titleLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action:#selector(profileImageTapped)))
         
-        let saveButton            = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed))
-        saveButton.tintColor      = .systemBlue
-        
-        let backArrowButton       = UIBarButtonItem(image: SFSymbols.backArrow, style: .done, target: self, action:#selector(backButtonPressed))
-        backArrowButton.tintColor = .systemBlue
+        let saveButton                     = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed))
+        saveButton.tintColor               = .systemBlue
+                
+        let backArrowButton                = UIBarButtonItem(image: SFSymbols.backArrow, style: .done, target: self, action:#selector(backButtonPressed))
+        backArrowButton.tintColor          = .systemBlue
         
         navigationItem.rightBarButtonItem  = saveButton
         navigationItem.leftBarButtonItem   = backArrowButton
         
         
-        contactImage.centerX(inView: view, topAnchor: view.topAnchor, paddingTop: 70)
+        contactImage.centerX(inView: contentView, topAnchor: contentView.topAnchor, paddingTop: 70)
         contactImage.setDimensions(width: 96, height: 96)
-        titleLabel.centerX(inView: view, topAnchor: contactImage.bottomAnchor, paddingTop: 10)
-        separatorLine.centerX(inView: view, topAnchor: titleLabel.bottomAnchor, paddingTop: 5)
+        titleLabel.centerX(inView: contentView, topAnchor: contactImage.bottomAnchor, paddingTop: 10)
+        separatorLine.centerX(inView: contentView, topAnchor: titleLabel.bottomAnchor, paddingTop: 5)
         
-        firstNameInputView.anchor(top: separatorLine.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 50, paddingLeft: 10, paddingRight: 10, height: 45)
-        lastNameInputView.anchor(top: firstNameInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
-         nickNameInputView.anchor(top: lastNameInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
-        emailInputView.anchor(top: nickNameInputView.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
-        PhoneNumberInputView.anchor(top: emailInputView.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
-        AddressInputView.anchor(top: PhoneNumberInputView.bottomAnchor, leading: view.leadingAnchor,trailing: view.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
+        firstNameInputView.anchor(top: separatorLine.bottomAnchor, leading: contentView.leadingAnchor,trailing: contentView.trailingAnchor, paddingTop: 50, paddingLeft: 10, paddingRight: 10, height: 45)
+        lastNameInputView.anchor(top: firstNameInputView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
+         nickNameInputView.anchor(top: lastNameInputView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
+        emailInputView.anchor(top: nickNameInputView.bottomAnchor, leading: contentView.leadingAnchor,trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
+        PhoneNumberInputView.anchor(top: emailInputView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
+        AddressInputView.anchor(top: PhoneNumberInputView.bottomAnchor, leading: contentView.leadingAnchor,trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
     
     }
     
@@ -177,6 +205,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     
     @objc func profileImageTapped() {
         present(imagePicker, animated: true, completion: nil)
+        imageTapped = true
     }
     
     @objc func saveButtonPressed() {
@@ -191,30 +220,27 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         guard let nickName     = nickNameTextField.text else {return}
         guard let adddress     = AddressTextField.text else {return}
         
-        if (firstNameTextField.text.isEmpty || lastNameTextField.text.isEmpty || nickNameTextField.text.isEmpty) {
-            presentABAlertOnMainThread(title: "Missing Information", message: "Please fill in the first name,last name and nick name fields .😅", buttonTitle: "Okay")
-            print("DEBUG: Missing fields")
+        if (firstNameTextField.text.isEmpty || lastNameTextField.text.isEmpty) {
+            presentABAlertOnMainThread(title: "Missing Information", message: "Please fill in the first name and last name fields .😅", buttonTitle: "Okay")
         }
             
         else {
             
             if inEditingMode {
-                AuthService.shared.editContact(currentUser: contactNameString!, firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress)
-                AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNameString!)
-                // set a way to know if the image has been changed??
+                AuthService.shared.editContact(currentUser: contactNameString ?? "value", firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress)
+                if imageTapped == true {
+                    AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNameString!)
+                }
             }
                 
             else {
                 AuthService.shared.addContact(firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress, contactImageUrl: "placeholder")
                 contactNamePath = firstName  + lastName
                 AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNamePath)
-                // alert showing user has been added?
             }
             
             dismiss(animated: true, completion: nil)
-
         }
-    
     }
     
     deinit {

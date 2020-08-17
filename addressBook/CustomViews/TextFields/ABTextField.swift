@@ -23,23 +23,13 @@ class ABTextField: UITextView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        
-//        layer.cornerRadius          = 10
-//        layer.borderWidth           = 2
-//        layer.borderColor           = UIColor.systemGray4.cgColor
-        
+
         textColor                   = .secondaryLabel
-//        tintColor                   = .label
         textAlignment               = .left
         font                        = UIFont.preferredFont(forTextStyle: .body)
-//        adjustsFontSizeToFitWidth   = true
-//        minimumFontSize             = 12
         returnKeyType               = .done
         backgroundColor             = .systemGray5
         autocorrectionType          = .no
-        
-//        placeholder                 = "Type"
-        
        
     }
 }

@@ -12,6 +12,6 @@ import UIKit
 
 enum notificationKeys {
     
-  static let reloadTableView = "co.tobaibrahim.reloadTableView"
+  static let reloadTableView = "com.tobaibrahim.reloadTableView"
         
 }

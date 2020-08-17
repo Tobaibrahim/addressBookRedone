@@ -14,8 +14,6 @@ class ABButton: UIButton {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        // we are telling xcode to override all initial methods that uibutton has (override init) and also let us use the properties of uibutton in our subclass - (super.init)
-        
         configure()
     }
     
@@ -23,11 +21,9 @@ class ABButton: UIButton {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
         
-        // this is a mandotory init method for storyboard, although we are not using storyboard we still have to pass it in
          
     }
     
-    // we create an init meaning and initialiser that is called when we create a uibutton,we have passed this init two parameters that return a ui colour and title this enables us to pick these settings without having default values and changing them later.
     
     init(backgroundColor: UIColor, title: String) {
         super.init(frame: .zero)

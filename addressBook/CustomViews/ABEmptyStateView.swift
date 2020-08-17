@@ -36,18 +36,15 @@ class ABEmptyStateView: UIView {
         
         messageLabel.numberOfLines = 3
         messageLabel.textColor     = .secondaryLabel
-        
-        
+    
         guard let safeImageString  = UIImage(named: "emptystate4") else {
             print("Check empty state Image")
             messageLabel.text = nil
-            
             return
         }
         
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         logoImageView.image        = safeImageString
-        
         
         NSLayoutConstraint.activate([
             messageLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: -20),
@@ -59,15 +56,7 @@ class ABEmptyStateView: UIView {
             logoImageView.heightAnchor.constraint(equalToConstant: 300),
             logoImageView.bottomAnchor.constraint(equalTo:messageLabel.topAnchor,constant: 120),
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-    
-            
-            
-
-        
         ])
-        
-        
-        
     }
     
 }

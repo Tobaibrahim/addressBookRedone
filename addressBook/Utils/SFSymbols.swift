@@ -24,5 +24,4 @@ static let pencil          = UIImage(systemName: "pencil.circle")
 static let backArrow       = UIImage(systemName: "arrow.left")
 static let icon            = UIImage(systemName: "person.crop.circle.fill")
 
-    
 }

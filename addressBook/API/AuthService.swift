@@ -31,15 +31,13 @@ struct AuthService {
     func uploadContactImage(contactImageUrl:String,namePath:String) {
         let url = ["ContactImageURL":contactImageUrl]
         ref.child("NewContacts").child(namePath).updateChildValues(url)
-        
     }
     
     func  addContact(firstName:String,lastName:String,email:String,phone:String,nickName:String,address:String,contactImageUrl:String) {
-        let fullName = firstName + lastName
+        let fullName = (firstName + lastName)
         let values = ["FirstName":firstName,"LastName":lastName,"Email":email,"Phone":phone,"NickName":nickName,
                       "Address":address,"ContactImageURL":contactImageUrl]
         ref.child("NewContacts").child(fullName).setValue(values)
-        
     }
     
     
@@ -47,7 +45,6 @@ struct AuthService {
         let values = ["FirstName":firstName,"LastName":lastName,"Email":email,"Phone":phone,"NickName":nickName,
                       "Address":address]
         ref.child("NewContacts").child(currentUser).updateChildValues(values)
-        
     }
     
     
@@ -60,8 +57,6 @@ struct AuthService {
         }
         
     }
-    
-    
-    
 }
+    
 }

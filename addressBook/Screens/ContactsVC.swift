@@ -14,13 +14,10 @@ class ContactsVC: UIViewController {
     
     //MARK: - Properties
     
-    var contactNameString: String!
     var imageArray       = [String]()
     var nameArray        = [String]()
     var searchContacts   = [String]()
     var issearching      = false
-    
-    
     
     var contact: UserData? {
         didSet {
@@ -36,14 +33,11 @@ class ContactsVC: UIViewController {
         }
     }
     
-    
-    
     let searchBar:UISearchBar = {
-        let searchBar =  UISearchBar(frame: .zero)
+        let searchBar         =  UISearchBar(frame: .zero)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
-    
     
     let tableView: UITableView = {
         let tv = UITableView()
@@ -52,6 +46,7 @@ class ContactsVC: UIViewController {
         tv.rowHeight           = 85
         tv.register(ContactsCell.self, forCellReuseIdentifier: ContactsCell.reuseID)
         tv.sectionIndexColor   = .systemGray6
+        tv.allowsSelection = true
         return tv
     }()
     
@@ -73,16 +68,13 @@ class ContactsVC: UIViewController {
         
     }
     
-    
     //MARK: - Helpers
     
     func createObservers() {
-          let name = NSNotification.Name(notificationKeys.reloadTableView)
-          NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: name, object: nil)
-          print("DEBUG: OBSERVER RELOADED TABLEVIEW")
-      }
-
-    
+        let name = NSNotification.Name(notificationKeys.reloadTableView)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: name, object: nil)
+        print("DEBUG: OBSERVER RELOADED TABLEVIEW")
+    }
     
     func fetchUsers(user:String) {
         UserService.shared.fetchUser(user: user) { (userData) in
@@ -97,36 +89,26 @@ class ContactsVC: UIViewController {
     }
     
     func configureUI() {
-        
-        fetchKeys()
-        
         let addButton          = UIBarButtonItem(image: SFSymbols.addButton, style: .done, target: self, action:#selector(addButtonPressed))
-        
         addButton.tintColor    = .systemBlue
         view.backgroundColor   = .systemGray5
         navigationItem.rightBarButtonItem  = addButton
         navigationItem.hidesBackButton = true
-
+        
         searchBar.delegate     = self
         searchBar.sizeToFit()
         tableView.frame        = view.frame
         tableView.delegate     = self
         tableView.dataSource   = self
+        view.addSubview(tableView)
+        view.addSubview(searchBar)
+        navigationItem.titleView = searchBar
+        navigationController?.navigationBar.prefersLargeTitles = true
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if self.nameArray.isEmpty {
-                self.showEmptyStateView(with: " Tap on the  +  to add a new contact", in: self.view)
-            }
-            else {
-                self.view.addSubview(self.tableView)
-                self.view.addSubview(self.searchBar)
-                self.navigationItem.titleView = self.searchBar
-                self.navigationController?.navigationBar.prefersLargeTitles = true
-
-            }
-        }
-        
+        loadState()
     }
+    
+    
     
     @objc func addButtonPressed() {
         let destVC           = AddNewContactVC()
@@ -136,12 +118,38 @@ class ContactsVC: UIViewController {
     }
     
     
-    @objc func reloadTableView() {
+    func loadState() {
         fetchKeys()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.tableView.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+            if self.nameArray.isEmpty {
+                self.navigationController?.navigationBar.prefersLargeTitles = false
+                self.view.showEmptyStateView(with: " Tap on the  +  to add a new contact", in: self.view)
+                self.searchBar.isHidden = true
+                self.tableView.isHidden = true
+            }
+            else {
+                
+                DispatchQueue.main.async {
+                    self.view.removeEmptyStateView()
+                    self.navigationController?.navigationBar.prefersLargeTitles = true
+                    self.searchBar.isHidden = false
+                    self.tableView.reloadData()
+                    self.tableView.isHidden = false
+                }
+                
+            }
         }
+        
     }
+    
+    
+    
+    
+    @objc func reloadTableView() {
+        loadState()
+    }
+    
     deinit {
         print("DEBUG: Contacts WAS DEINIT")
     }
@@ -151,8 +159,8 @@ class ContactsVC: UIViewController {
 extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell =  tableView.dequeueReusableCell(withIdentifier: ContactsCell.reuseID) as! ContactsCell
         
+        let cell =  tableView.dequeueReusableCell(withIdentifier: ContactsCell.reuseID) as! ContactsCell
         cell.editImageView.image = SFSymbols.icon
         let path = nameArray[indexPath.row]
         
@@ -162,10 +170,9 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         }
         
         if self.issearching {cell.titleLabel.text = self.searchContacts[indexPath.row]}
+            
         else {cell.titleLabel.text = nameArray[indexPath.row]}
-        
         return cell
-        
     }
     
     
@@ -180,13 +187,14 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         guard editingStyle == .delete else {return}
+        
         nameArray.remove(at: indexPath.row)
         imageArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
         let path = contactKey?.keys[indexPath.row]
         AuthService.shared.deleteContact(user: path!)
         reloadTableView()
-
+        
         
     }
     

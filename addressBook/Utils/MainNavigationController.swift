@@ -14,18 +14,6 @@ class MainNavigationController: UINavigationController {
     
     //MARK: - properties
     
-    var Contact: UserData? {
-        didSet {
-            print("DEBUG: Did set user in main navigation controller")
-            
-            guard let nav = viewControllers.first as? UINavigationController else {return}
-            guard let contactsVC = nav.viewControllers.first as? ContactsVC else {return}
-            
-            contactsVC.contact = self.Contact
-        }
-    }
-    
-    
     
     //MARK: - LifeCycle
 
@@ -33,15 +21,6 @@ class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         configureViewControllers()
     }
-    
-    
-    func fetchUsers() {
-        UserService.shared.fetchUser(user: "lionel Messi") { (userData) in
-            self.Contact = userData
-        }
-    }
-    
-    
     
     //MARK: - Helpers
 
