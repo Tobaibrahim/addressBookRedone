@@ -21,9 +21,7 @@ class ABEmptyStateView: UIView {
     init(message:String) {
         super.init(frame:.zero)
         messageLabel.text = message
-        
         configure()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -54,7 +52,7 @@ class ABEmptyStateView: UIView {
                     
             logoImageView.widthAnchor.constraint(equalToConstant: 300),
             logoImageView.heightAnchor.constraint(equalToConstant: 300),
-            logoImageView.bottomAnchor.constraint(equalTo:messageLabel.topAnchor,constant: 120),
+            logoImageView.bottomAnchor.constraint(equalTo:messageLabel.topAnchor,constant: 140),
             logoImageView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
     }

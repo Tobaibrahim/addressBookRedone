@@ -21,13 +21,11 @@ class ContactsVC: UIViewController {
     
     var contact: UserData? {
         didSet {
-            print("DEBUG: Did set user in contacts")
         }
     }
     
     var contactKey: Contactskeys? {
         didSet {
-            print("DEBUG: Did set key in contacts")
             guard let safeContactKeys = self.contactKey else {return}
             self.nameArray = safeContactKeys.keys
         }
@@ -36,7 +34,6 @@ class ContactsVC: UIViewController {
     let searchBar:UISearchBar = {
         let searchBar         =  UISearchBar(frame: .zero)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-//        searchBar.showsCancelButton = true
         return searchBar
     }()
     
@@ -57,7 +54,6 @@ class ContactsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        createObservers()
     }
     
     override func loadView() {
@@ -74,7 +70,6 @@ class ContactsVC: UIViewController {
     func createObservers() {
         let name = NSNotification.Name(notificationKeys.reloadTableView)
         NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: name, object: nil)
-        print("DEBUG: OBSERVER RELOADED TABLEVIEW")
     }
     
     func fetchUsers(user:String) {
@@ -89,11 +84,8 @@ class ContactsVC: UIViewController {
         }
     }
     
-//     func dismissKeyboard() {
-//        searchBar.resignFirstResponder()
-//    }
     func configureUI() {
-        
+        createObservers()
         let addButton          = UIBarButtonItem(image: SFSymbols.addButton, style: .done, target: self, action:#selector(addButtonPressed))
         addButton.tintColor    = .systemBlue
         view.backgroundColor   = .systemGray5
@@ -131,10 +123,10 @@ class ContactsVC: UIViewController {
     func loadState() {
         fetchKeys()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
             if self.nameArray.isEmpty {
                 self.navigationController?.navigationBar.prefersLargeTitles = false
-                self.view.showEmptyStateView(with: " Tap on the  +  to add a new contact", in: self.view)
+                self.view.showEmptyStateView(with: "Tap on the  +  to add a new contact", in: self.view)
                 self.searchBar.isHidden = true
                 self.tableView.isHidden = true
             }
@@ -170,13 +162,7 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         
         let cell =  tableView.dequeueReusableCell(withIdentifier: ContactsCell.reuseID) as! ContactsCell
         cell.editImageView.image = SFSymbols.icon
-        let path = nameArray[indexPath.row]
-        
-        UserService.shared.fetchImage(user: path) { (value) in
-            self.imageArray.insert(value, at: indexPath.row)
-            cell.editImageView.downloadImage(from: self.imageArray[indexPath.row])
-        }
-        
+       
         if self.issearching {cell.titleLabel.text = self.searchContacts[indexPath.row]
             
         }
@@ -198,13 +184,10 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         guard editingStyle == .delete else {return}
         
         nameArray.remove(at: indexPath.row)
-        imageArray.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .left)
         let path = contactKey?.keys[indexPath.row]
         AuthService.shared.deleteContact(user: path!)
         reloadTableView()
-        
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

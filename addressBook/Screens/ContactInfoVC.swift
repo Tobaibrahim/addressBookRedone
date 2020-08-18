@@ -207,7 +207,6 @@ class ContactInfoVC: UIViewController {
         navigationController?.pushViewController(destVC, animated: true)
     }
     
-    
     deinit {
         print("DEBUG: ContactsInfo WAS DEINIT")
     }
@@ -219,7 +218,4 @@ extension ContactInfoVC: UITextFieldDelegate {
         editButtonPressed()
         return true
     }
-    
-    
-    
 }

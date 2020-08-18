@@ -27,7 +27,6 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    
     let imagePicker:UIImagePickerController = {
         let picker = UIImagePickerController()
         picker.allowsEditing = true
@@ -122,7 +121,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         UserService.shared.fetchUser(user: user) { (userData) in
             self.Contact = userData
         }
-    }
+    }  
 
     func configureScrollView() {
         view.addSubview(scrollView)
@@ -265,7 +264,6 @@ extension AddNewContactVC: UIImagePickerControllerDelegate {
         
         guard let imageData = profileImage.jpegData(compressionQuality: 0.1) else {return}
         let filename = NSUUID().uuidString
-        
         let storage = Storage.storage().reference()
         let storageRef = storage.child("Contact_Image").child(filename)
         
