@@ -132,7 +132,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo:scrollView.widthAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: 900).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 1100).isActive = true
 
     }
     
