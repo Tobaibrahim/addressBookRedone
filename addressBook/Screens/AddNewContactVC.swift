@@ -34,31 +34,31 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     }()
     
     // Test
-    private lazy var firstNameTextField:ABTextField = {
+    let firstNameTextField:ABTextField = {
         let firstName = ABTextField()
         return firstName
     }()
     
-    private lazy var nickNameTextField:ABTextField = {
+    let nickNameTextField:ABTextField = {
         let firstName = ABTextField()
         return firstName
     }()
     
-    private lazy var lastNameTextField:ABTextField = {
+    let lastNameTextField:ABTextField = {
         let lastName = ABTextField()
         return lastName
     }()
     
-    private lazy var emailTextField:ABTextField = {
+    let emailTextField:ABTextField = {
         let firstName = ABTextField()
         return firstName
     }()
     
-    private lazy var PhoneNumberTextField:ABTextField = {
+    let PhoneNumberTextField:ABTextField = {
         let firstName = ABTextField()
         return firstName
     }()
-    private lazy var AddressTextField:ABTextField = {
+    let AddressTextField:ABTextField = {
         let firstName = ABTextField()
         
         return firstName

@@ -22,29 +22,29 @@ class ContactInfoVC: UIViewController {
         }
     }
     
-    private lazy var firstNameLabelField:ABBodyLabel = {
+   let firstNameLabelField:ABBodyLabel = {
         let firstName = ABBodyLabel()
         return firstName
     }()
     
-    private lazy var lastNameLabelField:ABBodyLabel = {
+    let lastNameLabelField:ABBodyLabel = {
         let lastName = ABBodyLabel()
         return lastName
     }()
     
-    private lazy var emailLabelField:ABBodyLabel = {
+    let emailLabelField:ABBodyLabel = {
         let firstName = ABBodyLabel()
         return firstName
     }()
-    private lazy var nickNameLabelField:ABBodyLabel = {
+    let nickNameLabelField:ABBodyLabel = {
         let firstName = ABBodyLabel()
         return firstName
     }()
-    private lazy var PhoneNumberLabelField:ABBodyLabel = {
+    let PhoneNumberLabelField:ABBodyLabel = {
         let firstName = ABBodyLabel()
         return firstName
     }()
-    private lazy var AddressLabelField:ABBodyLabel = {
+    let AddressLabelField:ABBodyLabel = {
         let firstName = ABBodyLabel()
         return firstName
     }()
