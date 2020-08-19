@@ -98,7 +98,7 @@ class ContactsVC: UIViewController {
        
         searchBar.delegate     = self
         searchBar.sizeToFit()
-        tableView.frame        = view.frame
+        tableView.frame        = view.bounds
         tableView.delegate     = self
         tableView.dataSource   = self
         view.addSubview(tableView)
@@ -172,16 +172,18 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if issearching {
             return searchContacts.count
         }
         return nameArray.count
+        
     }
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
-        
+
         let path = contactKey?.keys[indexPath.row]
         reloadTableView()
 

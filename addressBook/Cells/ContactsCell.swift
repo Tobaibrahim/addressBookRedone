@@ -42,7 +42,7 @@ class ContactsCell: UITableViewCell {
         addSubview(editImageView)
         addSubview(titleLabel)
         addSubview(nickNameLabel)
-        
+        accessoryType = .disclosureIndicator
         backgroundColor           = .systemGray5
         editImageView.image       = SFSymbols.icon
         editImageView.image       = editImageView.image!.withRenderingMode(.alwaysTemplate)
