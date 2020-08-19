@@ -180,16 +180,25 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         guard editingStyle == .delete else {return}
         
-        nameArray.remove(at: indexPath.row)
-        tableView.deleteRows(at: [indexPath], with: .left)
         let path = contactKey?.keys[indexPath.row]
-        AuthService.shared.deleteContact(user: path!)
         reloadTableView()
+
+        if issearching {
+            let path = searchContacts[indexPath.row]
+            searchContacts.remove(at: indexPath.row)
+            nameArray.remove(at: indexPath.row)
+            AuthService.shared.deleteContact(user: path)
+            tableView.deleteRows(at: [indexPath], with: .left)
+        }
+            
+        else {
+            nameArray.remove(at: indexPath.row)
+            AuthService.shared.deleteContact(user: path!)
+            tableView.deleteRows(at: [indexPath], with: .left)
+        }
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let destVC = ContactInfoVC()
