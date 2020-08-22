@@ -34,7 +34,6 @@
 		84F29A4024E6B00C00143393 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A3F24E6B00C00143393 /* AuthService.swift */; };
 		84F29A4224E7F8FE00143393 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4124E7F8FE00143393 /* UserService.swift */; };
 		84F29A4424E82C5900143393 /* UserKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4324E82C5900143393 /* UserKeys.swift */; };
-		84F29A4624E9578400143393 /* UserImageUrlData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4524E9578400143393 /* UserImageUrlData.swift */; };
 		84F29A4824E9830600143393 /* ABAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4724E9830600143393 /* ABAlertVC.swift */; };
 		84F29A4B24E984FB00143393 /* ABButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4A24E984FB00143393 /* ABButton.swift */; };
 /* End PBXBuildFile section */
@@ -70,7 +69,6 @@
 		84F29A3F24E6B00C00143393 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		84F29A4124E7F8FE00143393 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		84F29A4324E82C5900143393 /* UserKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeys.swift; sourceTree = "<group>"; };
-		84F29A4524E9578400143393 /* UserImageUrlData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageUrlData.swift; sourceTree = "<group>"; };
 		84F29A4724E9830600143393 /* ABAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABAlertVC.swift; sourceTree = "<group>"; };
 		84F29A4A24E984FB00143393 /* ABButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABButton.swift; sourceTree = "<group>"; };
 		D4268B07F4A580788115E431 /* Pods-addressBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-addressBook.release.xcconfig"; path = "Target Support Files/Pods-addressBook/Pods-addressBook.release.xcconfig"; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 			children = (
 				84F29A3F24E6B00C00143393 /* AuthService.swift */,
 				84F29A4124E7F8FE00143393 /* UserService.swift */,
-				84F29A4524E9578400143393 /* UserImageUrlData.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -395,7 +392,6 @@
 				846BD89A24E68B1D00A43A13 /* ABDisplayView.swift in Sources */,
 				842F37E624E31E2B008C4A44 /* UIViewController + Ext.swift in Sources */,
 				842F37DC24E2E6BE008C4A44 /* ContactInfoVC.swift in Sources */,
-				84F29A4624E9578400143393 /* UserImageUrlData.swift in Sources */,
 				849968B424EA60F4002E07F2 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -29,20 +29,7 @@ struct UserService {
         }}
     
 
-    
-    func fetchImage(user:String,completion: @escaping(String) -> Void) {
-           ref.child("NewContacts").child(user).observeSingleEvent(of: .value) { (snapshot) in
-               guard let dictionary    = snapshot.value as? [String:AnyObject] else {return}
-               let snapshopValue       = snapshot.value as? NSDictionary
-               guard let values        = snapshopValue?.allKeys else {return}
-               guard let val           = values as? [String] else {return}
-               let contactURL          = UserImageUrlData(keys: val.sorted(), dictionary: dictionary )
-               completion(contactURL.imageURL)
-            
 
-           }
-           
-       }
        
     
     func fetchKey(completion: @escaping(UserKeys) -> Void) {
