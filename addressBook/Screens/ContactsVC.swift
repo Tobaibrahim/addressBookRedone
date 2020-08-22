@@ -14,20 +14,11 @@ class ContactsVC: UIViewController {
     
     //MARK: - Properties
     
+    var contact          : UserDataViewModel?
     var imageArray       = [String]()
     var nameArray        = [String]()
     var searchContacts   = [String]() // filter array
-    
-    
-    
-    var contact: UserDataViewModel?
-    
-    var contactKey: UserkeysViewModel? {
-        didSet {
-            guard let safeContactKeys = self.contactKey else {return}
-            self.nameArray = safeContactKeys.keys
-        }
-    }
+     
     
     let searchBar:UISearchBar = {
         let searchBar         =  UISearchBar(frame: .zero)
@@ -45,6 +36,13 @@ class ContactsVC: UIViewController {
         tv.allowsSelection = true
         return tv
     }()
+    
+    var contactKey: UserkeysViewModel? {
+        didSet {
+            guard let safeContactKeys = self.contactKey else {return}
+            self.nameArray = safeContactKeys.keys
+        }
+    }
     
     
     //MARK: - Life Cycle
@@ -179,6 +177,7 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
+        
 
         let path = contactKey?.keys[indexPath.row]
         reloadTableView()
