@@ -16,15 +16,13 @@ class ContactsVC: UIViewController {
     
     var imageArray       = [String]()
     var nameArray        = [String]()
-    var searchContacts   = [String]()
-    var issearching      = false
+    var searchContacts   = [String]() // filter array
     
-    var contact: UserData? {
-        didSet {
-        }
-    }
     
-    var contactKey: Contactskeys? {
+    
+    var contact: UserDataViewModel?
+    
+    var contactKey: UserkeysViewModel? {
         didSet {
             guard let safeContactKeys = self.contactKey else {return}
             self.nameArray = safeContactKeys.keys
@@ -74,23 +72,25 @@ class ContactsVC: UIViewController {
     
     func fetchUsers(user:String) {
         UserService.shared.fetchUser(user: user) { (userData) in
-            self.contact = userData
+            self.contact = UserDataViewModel.init(userData: userData)
         }
     }
     
     func fetchKeys() {
         UserService.shared.fetchKey { (key) in
-            self.contactKey = key
+            self.contactKey = UserkeysViewModel(UserKey: key)
         }
     }
     
     func configureUI() {
+        
+        fetchUsers(user: "value")
         createObservers()
         let addButton          = UIBarButtonItem(image: SFSymbols.addButton, style: .done, target: self, action:#selector(addButtonPressed))
         addButton.tintColor    = .systemBlue
         view.backgroundColor   = .systemGray5
         navigationItem.rightBarButtonItem  = addButton
-        navigationItem.hidesBackButton = true
+        navigationItem.hidesBackButton     = true
         
         let tap = UITapGestureRecognizer(target: self.view, action:#selector(UIView.endEditing(_:)))
         tap.cancelsTouchesInView = false
@@ -109,21 +109,16 @@ class ContactsVC: UIViewController {
         loadState()
     }
     
-    
-    
     @objc func addButtonPressed() {
         let destVC           = AddNewContactVC()
         let navController    = UINavigationController(rootViewController: destVC)
-        destVC.inEditingMode = false
+        contact?.inEditingMode = false
         present(navController, animated: true)
     }
     
-    
-    
     func loadState() {
         fetchKeys()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
             if self.nameArray.isEmpty {
                 self.navigationController?.navigationBar.prefersLargeTitles = false
                 self.view.showEmptyStateView(with: "Tap on the  +  to add a new contact", in: self.view)
@@ -163,7 +158,7 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         let cell =  tableView.dequeueReusableCell(withIdentifier: ContactsCell.reuseID) as! ContactsCell
         cell.editImageView.image = SFSymbols.icon
        
-        if self.issearching {cell.titleLabel.text = self.searchContacts[indexPath.row]
+        if contactKey?.issearching == true {cell.titleLabel.text = self.searchContacts[indexPath.row]
             
         }
         else {cell.titleLabel.text = nameArray[indexPath.row]}
@@ -171,9 +166,10 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     }
     
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if issearching {
+        if contactKey?.issearching == true {
             return searchContacts.count
         }
         return nameArray.count
@@ -187,7 +183,7 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
         let path = contactKey?.keys[indexPath.row]
         reloadTableView()
 
-        if issearching {
+        if contactKey?.issearching == true {
             let path = searchContacts[indexPath.row]
             searchContacts.remove(at: indexPath.row)
             nameArray.remove(at: indexPath.row)
@@ -204,7 +200,7 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let destVC = ContactInfoVC()
-        if issearching {
+        if contactKey?.issearching == true {
             let path = searchContacts[indexPath.row]
             fetchUsers(user: path)
             destVC.passedOverContactName = path
@@ -223,7 +219,7 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
 
 extension ContactsVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        issearching = true
+        contactKey?.issearching  = true
         searchBar.showsCancelButton = true
         searchContacts = nameArray.filter({$0.prefix(searchText.count) == searchText})
             tableView.reloadData()

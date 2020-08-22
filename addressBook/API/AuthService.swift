@@ -30,7 +30,7 @@ struct AuthService {
     
     func uploadContactImage(contactImageUrl:String,namePath:String) {
         let url = ["ContactImageURL":contactImageUrl]
-        ref.child("NewContacts").child(namePath).updateChildValues(url)
+        ref.child("NewContacts").child("\(namePath)").updateChildValues(url)
     }
     
     func  addContact(firstName:String,lastName:String,email:String,phone:String,nickName:String,address:String,contactImageUrl:String) {

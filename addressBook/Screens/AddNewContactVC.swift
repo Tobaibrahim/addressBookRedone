@@ -11,16 +11,15 @@ import Firebase
 
 class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     
+    
     //MARK: - Properties
     
     var contactNameString: String?
-    var inEditingMode    : Bool!
-    var imageTapped      = false
     var contactNamePath  = String()
     var contactImageUrl  = String()
     
     
-    var Contact: UserData? {
+    var contact: UserDataViewModel? {
         didSet {
             print("DEBUG: Did set user in addNewContacts")
             configureEditMode()
@@ -33,38 +32,15 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         return picker
     }()
     
-    // Test
-    let firstNameTextField:ABTextField = {
-        let firstName = ABTextField()
-        return firstName
-    }()
     
-    let nickNameTextField:ABTextField = {
-        let firstName = ABTextField()
-        return firstName
-    }()
+    let firstNameTextField   = ABTextField()
+    let nickNameTextField    = ABTextField()
+    let lastNameTextField    = ABTextField()
+    let emailTextField       = ABTextField()
+    let PhoneNumberTextField = ABTextField()
+    let AddressTextField     = ABTextField()
     
-    let lastNameTextField:ABTextField = {
-        let lastName = ABTextField()
-        return lastName
-    }()
-    
-    let emailTextField:ABTextField = {
-        let firstName = ABTextField()
-        return firstName
-    }()
-    
-    let PhoneNumberTextField:ABTextField = {
-        let firstName = ABTextField()
-        return firstName
-    }()
-    let AddressTextField:ABTextField = {
-        let firstName = ABTextField()
-        
-        return firstName
-    }()
-    
-    
+
     let titleLabel: ABTitleLabel = {
         let title       = ABTitleLabel(textAlignment: .left, fontsSize: 14)
         title.text      = "Edit"
@@ -98,7 +74,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
-
+    
     let scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.showsHorizontalScrollIndicator = false
@@ -119,10 +95,10 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     
     func fetchUsers(user:String) {
         UserService.shared.fetchUser(user: user) { (userData) in
-            self.Contact = userData
+            self.contact = UserDataViewModel(userData: userData)
         }
     }  
-
+    
     func configureScrollView() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -133,7 +109,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
         contentView.widthAnchor.constraint(equalTo:scrollView.widthAnchor).isActive = true
         contentView.heightAnchor.constraint(equalToConstant: 1100).isActive = true
-
+        
     }
     
     func dismissKeyboard(){
@@ -157,6 +133,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         let AddressInputView      = ABInputView(textView: AddressTextField, title: "Address")
         AddressInputView.underLine.isHidden = true
         
+        
         let views = [contactImage,titleLabel,
                      separatorLine,firstNameInputView
             ,lastNameInputView,emailInputView,
@@ -171,7 +148,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         
         let saveButton                     = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(saveButtonPressed))
         saveButton.tintColor               = .systemBlue
-                
+        
         let backArrowButton                = UIBarButtonItem(image: SFSymbols.backArrow, style: .done, target: self, action:#selector(backButtonPressed))
         backArrowButton.tintColor          = .systemBlue
         
@@ -186,21 +163,21 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         
         firstNameInputView.anchor(top: separatorLine.bottomAnchor, leading: contentView.leadingAnchor,trailing: contentView.trailingAnchor, paddingTop: 50, paddingLeft: 10, paddingRight: 10, height: 45)
         lastNameInputView.anchor(top: firstNameInputView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
-         nickNameInputView.anchor(top: lastNameInputView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
+        nickNameInputView.anchor(top: lastNameInputView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10,  paddingRight: 10, height: 45)
         emailInputView.anchor(top: nickNameInputView.bottomAnchor, leading: contentView.leadingAnchor,trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
         PhoneNumberInputView.anchor(top: emailInputView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
         AddressInputView.anchor(top: PhoneNumberInputView.bottomAnchor, leading: contentView.leadingAnchor,trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
-    
+        
     }
     
     func configureEditMode() {
-        if inEditingMode == true {
-            firstNameTextField.text   = Contact?.firstName
-            lastNameTextField.text    = Contact?.lastName
-            PhoneNumberTextField.text = Contact?.PhoneNumber
-            emailTextField.text       = Contact?.email
-            AddressTextField.text     = Contact?.Address
-            nickNameTextField.text    = Contact?.nickName
+        if contact?.inEditingMode == true {
+            firstNameTextField.text   = contact?.firstName
+            lastNameTextField.text    = contact?.lastName
+            PhoneNumberTextField.text = contact?.PhoneNumber
+            emailTextField.text       = contact?.email
+            AddressTextField.text     = contact?.Address
+            nickNameTextField.text    = contact?.nickName
         }
     }
     
@@ -211,15 +188,17 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
     
     @objc func profileImageTapped() {
         present(imagePicker, animated: true, completion: nil)
-        imageTapped = true
+        contact?.imageTapped = true
+        
     }
     
     @objc func saveButtonPressed() {
         
         let name = Notification.Name(rawValue: notificationKeys.reloadTableView)
         NotificationCenter.default.post(name: name, object: nil)
-    
-        guard let firstName    = firstNameTextField.text else {return}
+        
+        
+        guard let firstName    = firstNameTextField.text   else {return}
         guard let lastName     = lastNameTextField.text else {return}
         guard let email        = emailTextField.text else {return}
         guard let phone        = PhoneNumberTextField.text else {return}
@@ -232,9 +211,9 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
             
         else {
             
-            if inEditingMode {
+            if contact?.inEditingMode == true {
                 AuthService.shared.editContact(currentUser: contactNameString ?? "value", firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress)
-                if imageTapped == true {
+                if contact?.imageTapped == true {
                     AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNameString!)
                 }
             }

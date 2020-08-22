@@ -45,12 +45,12 @@ struct UserService {
        }
        
     
-    func fetchKey(completion: @escaping(Contactskeys) -> Void) {
+    func fetchKey(completion: @escaping(UserKeys) -> Void) {
         ref.child("NewContacts").observeSingleEvent(of: .value) { (snapshot) in
             let snapshopValue       = snapshot.value as? NSDictionary
             guard let values        = snapshopValue?.allKeys else {return}
             guard let val           = values as? [String] else {return}
-            let keys = Contactskeys(keys: val.sorted())
+            let keys = UserKeys(keys: val.sorted())
             completion(keys)
         }
 

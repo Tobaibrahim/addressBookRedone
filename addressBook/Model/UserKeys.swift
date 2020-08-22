@@ -8,8 +8,10 @@
 
 import Foundation
 
-struct Contactskeys {
+struct UserKeys {
     
     let keys:[String]
+    var issearching = false
+
 
 }

@@ -10,15 +10,15 @@ import UIKit
 
 class ContactsCell: UITableViewCell {
     
-
     
     
-       static let reuseID  = "ContactsCell"
-       let editImageView   = ABImageView(frame:.zero)
-       let titleLabel      = ABTitleLabel(textAlignment:.left , fontsSize: 16)
-       let nickNameLabel   = ABBodyLabel(textAlignment: .left, fontsSize: 13)
-        
-        
+    
+    static let reuseID  = "ContactsCell"
+    let editImageView   = ABImageView(frame:.zero)
+    let titleLabel      = ABTitleLabel(textAlignment:.left , fontsSize: 16)
+    let nickNameLabel   = ABBodyLabel(textAlignment: .left, fontsSize: 13)
+    
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
@@ -30,11 +30,10 @@ class ContactsCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(contact:UserData){
+    func set(contact:UserDataViewModel){
         nickNameLabel.text = contact.nickName
         
-             // this function allows us to pass in the folower class/ login property and call it in our folowers list vc
-         }
+    }
     
     
     private func configure () {
@@ -44,17 +43,16 @@ class ContactsCell: UITableViewCell {
         addSubview(nickNameLabel)
         accessoryType = .disclosureIndicator
         
-        
         backgroundColor           = .systemGray5
         editImageView.image       = SFSymbols.icon
         editImageView.image       = editImageView.image!.withRenderingMode(.alwaysTemplate)
         editImageView.tintColor   = UIColor.systemGray
         editImageView.layer.cornerRadius = 10
-    
+        
         titleLabel.anchor(top:self.topAnchor,leading: editImageView.leadingAnchor,paddingTop: 20, paddingLeft: 60,height: 40)
         nickNameLabel.anchor(top: titleLabel.bottomAnchor,leading:editImageView.leadingAnchor, paddingTop: 0,paddingLeft: 60,height: 20)
         editImageView.anchor(top:self.topAnchor ,leading: self.leadingAnchor, paddingTop: 20, paddingLeft: 20, width: 40, height: 40)
-}
-
-   
+    }
+    
+    
 }

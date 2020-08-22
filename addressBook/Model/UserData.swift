@@ -18,7 +18,10 @@ struct UserData {
     let PhoneNumber:String
     let Address:String
     let imageURL:String
-    let keys:[String]
+    var inEditingMode  : Bool
+    var imageTapped    : Bool
+
+       
 
     init(keys:[String],dictionary:[String:AnyObject]) {
 
@@ -29,7 +32,8 @@ struct UserData {
         self.PhoneNumber = dictionary["Phone"] as? String ?? ""
         self.Address   = dictionary["Address"] as? String ?? ""
         self.imageURL  = dictionary["ContactImageURL"] as? String ?? ""
-        self.keys      = keys
+        self.inEditingMode = false
+        self.imageTapped   = false
     }
 
 }

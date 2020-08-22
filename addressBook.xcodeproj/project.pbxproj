@@ -29,10 +29,11 @@
 		8434750524E5477A0052692F /* ABInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8434750424E5477A0052692F /* ABInputView.swift */; };
 		846BD89A24E68B1D00A43A13 /* ABDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846BD89924E68B1D00A43A13 /* ABDisplayView.swift */; };
 		849968B424EA60F4002E07F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849968B324EA60F4002E07F2 /* Constants.swift */; };
-		84E4B15724EA7328008640E3 /* ABLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E4B15624EA7328008640E3 /* ABLoadingView.swift */; };
+		84DC9EE324F151A4009C5759 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC9EE224F151A4009C5759 /* UserDataViewModel.swift */; };
+		84DC9EE524F15827009C5759 /* UserkeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC9EE424F15827009C5759 /* UserkeysViewModel.swift */; };
 		84F29A4024E6B00C00143393 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A3F24E6B00C00143393 /* AuthService.swift */; };
 		84F29A4224E7F8FE00143393 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4124E7F8FE00143393 /* UserService.swift */; };
-		84F29A4424E82C5900143393 /* Contactskeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4324E82C5900143393 /* Contactskeys.swift */; };
+		84F29A4424E82C5900143393 /* UserKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4324E82C5900143393 /* UserKeys.swift */; };
 		84F29A4624E9578400143393 /* UserImageUrlData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4524E9578400143393 /* UserImageUrlData.swift */; };
 		84F29A4824E9830600143393 /* ABAlertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4724E9830600143393 /* ABAlertVC.swift */; };
 		84F29A4B24E984FB00143393 /* ABButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4A24E984FB00143393 /* ABButton.swift */; };
@@ -64,10 +65,11 @@
 		8434750424E5477A0052692F /* ABInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABInputView.swift; sourceTree = "<group>"; };
 		846BD89924E68B1D00A43A13 /* ABDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABDisplayView.swift; sourceTree = "<group>"; };
 		849968B324EA60F4002E07F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		84E4B15624EA7328008640E3 /* ABLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABLoadingView.swift; sourceTree = "<group>"; };
+		84DC9EE224F151A4009C5759 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
+		84DC9EE424F15827009C5759 /* UserkeysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserkeysViewModel.swift; sourceTree = "<group>"; };
 		84F29A3F24E6B00C00143393 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		84F29A4124E7F8FE00143393 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		84F29A4324E82C5900143393 /* Contactskeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contactskeys.swift; sourceTree = "<group>"; };
+		84F29A4324E82C5900143393 /* UserKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeys.swift; sourceTree = "<group>"; };
 		84F29A4524E9578400143393 /* UserImageUrlData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageUrlData.swift; sourceTree = "<group>"; };
 		84F29A4724E9830600143393 /* ABAlertVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABAlertVC.swift; sourceTree = "<group>"; };
 		84F29A4A24E984FB00143393 /* ABButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ABButton.swift; sourceTree = "<group>"; };
@@ -115,9 +117,10 @@
 		842F37BF24E2E587008C4A44 /* addressBook */ = {
 			isa = PBXGroup;
 			children = (
+				8434750124E46D090052692F /* Model */,
+				84DC9EE124F11361009C5759 /* ViewModel */,
 				84F29A4924E984E700143393 /* Buttons */,
 				84F29A3B24E6AF4E00143393 /* API */,
-				8434750124E46D090052692F /* Model */,
 				842F37EF24E32741008C4A44 /* CustomViews */,
 				842F37EC24E325EC008C4A44 /* Cells */,
 				842F37E424E31DFA008C4A44 /* Extentions */,
@@ -188,7 +191,6 @@
 				8434750424E5477A0052692F /* ABInputView.swift */,
 				846BD89924E68B1D00A43A13 /* ABDisplayView.swift */,
 				84F29A4724E9830600143393 /* ABAlertVC.swift */,
-				84E4B15624EA7328008640E3 /* ABLoadingView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -213,9 +215,18 @@
 			isa = PBXGroup;
 			children = (
 				8434750224E46D270052692F /* UserData.swift */,
-				84F29A4324E82C5900143393 /* Contactskeys.swift */,
+				84F29A4324E82C5900143393 /* UserKeys.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		84DC9EE124F11361009C5759 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				84DC9EE224F151A4009C5759 /* UserDataViewModel.swift */,
+				84DC9EE424F15827009C5759 /* UserkeysViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		84F29A3B24E6AF4E00143393 /* API */ = {
@@ -369,14 +380,15 @@
 				84F29A4B24E984FB00143393 /* ABButton.swift in Sources */,
 				842F37C124E2E587008C4A44 /* AppDelegate.swift in Sources */,
 				8434750524E5477A0052692F /* ABInputView.swift in Sources */,
-				84E4B15724EA7328008640E3 /* ABLoadingView.swift in Sources */,
+				84DC9EE324F151A4009C5759 /* UserDataViewModel.swift in Sources */,
 				84F29A4024E6B00C00143393 /* AuthService.swift in Sources */,
 				842F37C324E2E587008C4A44 /* SceneDelegate.swift in Sources */,
 				842F37E324E31C0B008C4A44 /* SFSymbols.swift in Sources */,
+				84DC9EE524F15827009C5759 /* UserkeysViewModel.swift in Sources */,
 				842F37E124E2F12A008C4A44 /* MainNavigationController.swift in Sources */,
 				842F37EE24E3261C008C4A44 /* ContactsCell.swift in Sources */,
 				842F37D824E2E626008C4A44 /* ContactsVC.swift in Sources */,
-				84F29A4424E82C5900143393 /* Contactskeys.swift in Sources */,
+				84F29A4424E82C5900143393 /* UserKeys.swift in Sources */,
 				84F29A4224E7F8FE00143393 /* UserService.swift in Sources */,
 				8434750324E46D270052692F /* UserData.swift in Sources */,
 				842F37F424E3C628008C4A44 /* ABEmptyStateView.swift in Sources */,

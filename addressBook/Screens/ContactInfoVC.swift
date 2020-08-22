@@ -15,7 +15,7 @@ class ContactInfoVC: UIViewController {
     
     var passedOverContactName: String?
     
-    var Contact: UserData? {
+    var contact: UserDataViewModel? {
         didSet {
             print("DEBUG: Did set user in contactInfo")
             configureUI()
@@ -110,7 +110,7 @@ class ContactInfoVC: UIViewController {
     
     func fetchUsers(user:String) {
         UserService.shared.fetchUser(user: user) { (userData) in
-            self.Contact = userData
+            self.contact = UserDataViewModel(userData: userData)
         }
     }
     
@@ -142,16 +142,16 @@ class ContactInfoVC: UIViewController {
         let AddressDisplayView      = ABDisplayView(displayView: AddressLabelField, title: "Address", height: addressHeight)
         AddressDisplayView.underLine.isHidden = true
         
-        guard let safeImageUrl      = Contact?.imageURL else {return}
+        guard let safeImageUrl      = contact?.imageURL else {return}
         contactImage.downloadImage(from: safeImageUrl)
-        titleLabel.text             = ((Contact?.firstName ?? "") + (Contact?.lastName ?? ""))
-        nickNameLabel.text          = Contact?.nickName
-        firstNameLabelField.text    = Contact?.firstName
-        lastNameLabelField.text     = Contact?.lastName
-        emailLabelField.text        = Contact?.email
-        nickNameLabelField.text     = Contact?.nickName
-        PhoneNumberLabelField.text  = Contact?.PhoneNumber
-        AddressLabelField.text      = Contact?.Address
+        titleLabel.text             = ((contact?.firstName ?? "") + (contact?.lastName ?? ""))
+        nickNameLabel.text          = contact?.nickName
+        firstNameLabelField.text    = contact?.firstName
+        lastNameLabelField.text     = contact?.lastName
+        emailLabelField.text        = contact?.email
+        nickNameLabelField.text     = contact?.nickName
+        PhoneNumberLabelField.text  = contact?.PhoneNumber
+        AddressLabelField.text      = contact?.Address
         
         
         let views = [contactImage,titleLabel,
@@ -203,7 +203,7 @@ class ContactInfoVC: UIViewController {
     @objc func editButtonPressed() {        
         let destVC               = AddNewContactVC()
         destVC.contactNameString = passedOverContactName
-        destVC.inEditingMode = true
+        contact?.inEditingMode   = true
         navigationController?.pushViewController(destVC, animated: true)
     }
     

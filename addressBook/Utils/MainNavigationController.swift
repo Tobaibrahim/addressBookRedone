@@ -36,10 +36,10 @@ class MainNavigationController: UINavigationController {
         newContact.title            = "New Contact"
         
         let appearance = UINavigationBarAppearance()
-        appearance.backgroundColor = .systemGray5
+        appearance.backgroundColor     = .systemGray5
         appearance.titleTextAttributes = [.foregroundColor: UIColor.systemGray5]
-        navigationBar.isTranslucent = false
-        viewControllers             =  [contactInfo,newContact,contacts]
+        navigationBar.isTranslucent    = false
+        viewControllers                =  [contactInfo,newContact,contacts]
         UINavigationBar.appearance().shadowImage  = UIImage()
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
