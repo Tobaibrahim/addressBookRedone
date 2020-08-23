@@ -127,7 +127,7 @@ class ContactInfoVC: UIViewController {
         
         guard let safeImageUrl      = contact?.imageURL else {return}
         contactImage.downloadImage(from: safeImageUrl)
-        titleLabel.text             = ((contact?.firstName ?? "") + (contact?.lastName ?? ""))
+        titleLabel.text             = (("\(contact!.firstName) " ) + (contact?.lastName ?? ""))
         nickNameLabel.text          = contact?.nickName
         firstNameLabelField.text    = contact?.firstName
         lastNameLabelField.text     = contact?.lastName

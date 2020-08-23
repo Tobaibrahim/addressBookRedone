@@ -125,7 +125,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         view.backgroundColor   = .systemGray5
         imagePicker.delegate = self
         
-        let PhoneNumberInputView  = ABInputView(textView: PhoneNumberTextField, title: "PhoneNumber")
+        let PhoneNumberInputView  = ABInputView(textView: PhoneNumberTextField, title: "Phone Number")
         let firstNameInputView    = ABInputView(textView: firstNameTextField, title:"First Name")
         let lastNameInputView     = ABInputView(textView: lastNameTextField, title: "Last Name")
         let emailInputView        = ABInputView(textView: emailTextField, title: "Email")
