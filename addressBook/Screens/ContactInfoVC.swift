@@ -15,6 +15,8 @@ class ContactInfoVC: UIViewController {
     
     var passedOverContactName: String?
     
+    
+    
     var contact: UserDataViewModel? {
         didSet {
             print("DEBUG: Did set user in contactInfo")
@@ -22,32 +24,13 @@ class ContactInfoVC: UIViewController {
         }
     }
     
-   let firstNameLabelField:ABBodyLabel = {
-        let firstName = ABBodyLabel()
-        return firstName
-    }()
-    
-    let lastNameLabelField:ABBodyLabel = {
-        let lastName = ABBodyLabel()
-        return lastName
-    }()
-    
-    let emailLabelField:ABBodyLabel = {
-        let firstName = ABBodyLabel()
-        return firstName
-    }()
-    let nickNameLabelField:ABBodyLabel = {
-        let firstName = ABBodyLabel()
-        return firstName
-    }()
-    let PhoneNumberLabelField:ABBodyLabel = {
-        let firstName = ABBodyLabel()
-        return firstName
-    }()
-    let AddressLabelField:ABBodyLabel = {
-        let firstName = ABBodyLabel()
-        return firstName
-    }()
+   
+    let firstNameLabelField   = ABBodyLabel()
+    let lastNameLabelField    = ABBodyLabel()
+    let emailLabelField       = ABBodyLabel()
+    let nickNameLabelField    = ABBodyLabel()
+    let PhoneNumberLabelField = ABBodyLabel()
+    let AddressLabelField     = ABBodyLabel()
     
     let titleLabel: ABTitleLabel = {
         let title       = ABTitleLabel(textAlignment: .left, fontsSize: 18)

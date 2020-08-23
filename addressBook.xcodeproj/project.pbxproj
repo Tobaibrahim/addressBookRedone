@@ -31,6 +31,7 @@
 		849968B424EA60F4002E07F2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849968B324EA60F4002E07F2 /* Constants.swift */; };
 		84DC9EE324F151A4009C5759 /* UserDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC9EE224F151A4009C5759 /* UserDataViewModel.swift */; };
 		84DC9EE524F15827009C5759 /* UserkeysViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC9EE424F15827009C5759 /* UserkeysViewModel.swift */; };
+		84DC9EE724F1A7E9009C5759 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84DC9EE624F1A7E9009C5759 /* ImageModel.swift */; };
 		84F29A4024E6B00C00143393 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A3F24E6B00C00143393 /* AuthService.swift */; };
 		84F29A4224E7F8FE00143393 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4124E7F8FE00143393 /* UserService.swift */; };
 		84F29A4424E82C5900143393 /* UserKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F29A4324E82C5900143393 /* UserKeys.swift */; };
@@ -66,6 +67,7 @@
 		849968B324EA60F4002E07F2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		84DC9EE224F151A4009C5759 /* UserDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewModel.swift; sourceTree = "<group>"; };
 		84DC9EE424F15827009C5759 /* UserkeysViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserkeysViewModel.swift; sourceTree = "<group>"; };
+		84DC9EE624F1A7E9009C5759 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
 		84F29A3F24E6B00C00143393 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		84F29A4124E7F8FE00143393 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		84F29A4324E82C5900143393 /* UserKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserKeys.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				8434750224E46D270052692F /* UserData.swift */,
 				84F29A4324E82C5900143393 /* UserKeys.swift */,
+				84DC9EE624F1A7E9009C5759 /* ImageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				8434750524E5477A0052692F /* ABInputView.swift in Sources */,
 				84DC9EE324F151A4009C5759 /* UserDataViewModel.swift in Sources */,
 				84F29A4024E6B00C00143393 /* AuthService.swift in Sources */,
+				84DC9EE724F1A7E9009C5759 /* ImageModel.swift in Sources */,
 				842F37C324E2E587008C4A44 /* SceneDelegate.swift in Sources */,
 				842F37E324E31C0B008C4A44 /* SFSymbols.swift in Sources */,
 				84DC9EE524F15827009C5759 /* UserkeysViewModel.swift in Sources */,

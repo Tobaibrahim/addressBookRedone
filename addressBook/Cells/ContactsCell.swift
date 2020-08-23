@@ -10,7 +10,9 @@ import UIKit
 
 class ContactsCell: UITableViewCell {
     
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
     
     
     static let reuseID  = "ContactsCell"

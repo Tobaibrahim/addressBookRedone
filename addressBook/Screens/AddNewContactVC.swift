@@ -168,7 +168,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
         PhoneNumberInputView.anchor(top: emailInputView.bottomAnchor, leading: contentView.leadingAnchor, trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
         AddressInputView.anchor(top: PhoneNumberInputView.bottomAnchor, leading: contentView.leadingAnchor,trailing: contentView.trailingAnchor, paddingTop: 30, paddingLeft: 10, paddingRight: 10, height: 45)
         
-    }
+}
     
     func configureEditMode() {
         if contact?.inEditingMode == true {
@@ -220,7 +220,7 @@ class AddNewContactVC: UIViewController, UINavigationControllerDelegate {
                 
             else {
                 AuthService.shared.addContact(firstName: firstName, lastName: lastName, email: email, phone: phone, nickName: nickName, address: adddress, contactImageUrl: "placeholder")
-                contactNamePath = firstName  + lastName
+                contactNamePath = ("\(firstName) ") + lastName
                 AuthService.shared.uploadContactImage(contactImageUrl: contactImageUrl, namePath: contactNamePath)
             }
             

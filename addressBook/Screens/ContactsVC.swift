@@ -152,10 +152,22 @@ class ContactsVC: UIViewController {
 extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+
         let cell =  tableView.dequeueReusableCell(withIdentifier: ContactsCell.reuseID) as! ContactsCell
-        cell.editImageView.image = SFSymbols.icon
-       
+        
+        let path = nameArray[indexPath.row]
+        cell.tag = indexPath.row
+        
+        UserService.shared.fetchImage(user: path) { (value) in
+            self.imageArray.insert(value, at: indexPath.row)
+            
+            if cell.tag == indexPath.row {
+                /* yeah, I want to rock this cell with my downloaded image! */
+                cell.editImageView.downloadImage(from: self.imageArray[indexPath.row])
+
+            }
+        }
+
         if contactKey?.issearching == true {cell.titleLabel.text = self.searchContacts[indexPath.row]
             
         }
