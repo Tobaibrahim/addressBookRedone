@@ -32,6 +32,6 @@ struct UserDataViewModel {
         self.Address = userData.Address
         self.imageURL = userData.imageURL
         self.inEditingMode = true
-        self.imageTapped   = true
+        self.imageTapped   = false
     }
 }
