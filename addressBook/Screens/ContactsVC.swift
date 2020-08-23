@@ -18,7 +18,7 @@ class ContactsVC: UIViewController {
     var imageArray       = [String]()
     var nameArray        = [String]()
     var searchContacts   = [String]() // filter array
-     
+    
     
     let searchBar:UISearchBar = {
         let searchBar         =  UISearchBar(frame: .zero)
@@ -93,7 +93,7 @@ class ContactsVC: UIViewController {
         let tap = UITapGestureRecognizer(target: self.view, action:#selector(UIView.endEditing(_:)))
         tap.cancelsTouchesInView = false
         tableView.addGestureRecognizer(tap)
-       
+        
         searchBar.delegate     = self
         searchBar.sizeToFit()
         tableView.frame        = view.bounds
@@ -138,7 +138,7 @@ class ContactsVC: UIViewController {
     }
     
     
-
+    
     @objc func reloadTableView() {
         loadState()
     }
@@ -152,29 +152,13 @@ class ContactsVC: UIViewController {
 extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell =  tableView.dequeueReusableCell(withIdentifier: ContactsCell.reuseID) as! ContactsCell
         
-        let path = nameArray[indexPath.row]
-        cell.tag = indexPath.row
-        
-        UserService.shared.fetchImage(user: path) { (value) in
-            self.imageArray.insert(value, at: indexPath.row)
-            
-            if cell.tag == indexPath.row {
-                /* yeah, I want to rock this cell with my downloaded image! */
-                cell.editImageView.downloadImage(from: self.imageArray[indexPath.row])
-
-            }
-        }
-
-        if contactKey?.issearching == true {cell.titleLabel.text = self.searchContacts[indexPath.row]
-            
-        }
+        if contactKey?.issearching == true {cell.titleLabel.text = self.searchContacts[indexPath.row]}
         else {cell.titleLabel.text = nameArray[indexPath.row]}
         return cell
     }
-    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -183,17 +167,16 @@ extension ContactsVC:UITableViewDataSource,UITableViewDelegate {
             return searchContacts.count
         }
         return nameArray.count
-        
     }
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else {return}
         
-
+        
         let path = contactKey?.keys[indexPath.row]
         reloadTableView()
-
+        
         if contactKey?.issearching == true {
             let path = searchContacts[indexPath.row]
             searchContacts.remove(at: indexPath.row)
@@ -233,15 +216,15 @@ extension ContactsVC: UISearchBarDelegate {
         contactKey?.issearching  = true
         searchBar.showsCancelButton = true
         searchContacts = nameArray.filter({$0.prefix(searchText.count) == searchText})
-            tableView.reloadData()
+        tableView.reloadData()
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false
-
+        
     }
-
-
+    
+    
 }
 
